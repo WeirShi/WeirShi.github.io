@@ -352,48 +352,16 @@
 
       
         
-          
-            <p>作为一名前端小白，最近又开始折腾Go了，也是把Go的基本语法学了一遍，现在也是把基础的环境搭建一点点的写出来。我这里用的Mac的系统，windows的同学谅解。。。</p>
+          <p>作为一名前端小白，最近又开始折腾Go了，也是把Go的基本语法学了一遍，现在也是把基础的环境搭建一点点的写出来。我这里用的Mac的系统，windows的同学谅解。。。</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>go官方下载链接(需要梯子)：<a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a><br>找到适合你系统的版本下载安装即可<br>在terminal里输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure></p>
 <p>如果出现go version go1.11.2 darwin/amd64，说明安装成功，接下来就是环境的配置了</p>
-<h3 id="配置环境变量GOPATH和GOBIN"><a href="#配置环境变量GOPATH和GOBIN" class="headerlink" title="配置环境变量GOPATH和GOBIN"></a>配置环境变量GOPATH和GOBIN</h3><ol>
-<li><p>打开Terminal</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>看一下有没有.bash_profile文件(有的话跳过这一步)，没有的话</p>
-<ul>
-<li><p>创建：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑： </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile   </span><br><span class="line">或者用</span><br><span class="line">vim .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义GOPATH和GOBIN位置</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=$HOME/go</span><br><span class="line">export GOBIN=$GOPATH/bin</span><br><span class="line">export PATH=$PATH:$GOBIN</span><br></pre></td></tr></table></figure>
-<p>  也可以定义多个GOPTAH(我是这么配的)</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=$HOME/go:$HOME/xxx/go</span><br><span class="line">export GOBIN=$&#123;GOPATH//://bin:&#125;/bin</span><br><span class="line">export PATH=$PATH:$GOBIN</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后保存编译一下</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>配置完成之后检查一下Go环境变量</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go env</span><br></pre></td></tr></table></figure>
-<p> 正常出现这些，我们的环境就配置好了</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">GOARCH=&quot;amd64&quot;</span><br><span class="line">GOBIN=&quot;/Users/xxx/go/bin:/Users/xxx/xxx/go/bin&quot;</span><br><span class="line">GOCACHE=&quot;/Users/xxx/Library/Caches/go-build&quot;</span><br><span class="line">GOEXE=&quot;&quot;</span><br><span class="line">GOFLAGS=&quot;&quot;</span><br><span class="line">GOHOSTARCH=&quot;amd64&quot;</span><br><span class="line">GOHOSTOS=&quot;darwin&quot;</span><br><span class="line">GOOS=&quot;darwin&quot;</span><br><span class="line">GOPATH=&quot;/Users/xxx/go:/Users/xxx/WeirWork/go&quot;</span><br><span class="line">GOPROXY=&quot;&quot;</span><br><span class="line">GORACE=&quot;&quot;</span><br><span class="line">GOROOT=&quot;/usr/local/Cellar/go/1.11.2/libexec&quot;</span><br><span class="line">GOTMPDIR=&quot;&quot;</span><br><span class="line">GOTOOLDIR=&quot;/usr/local/Cellar/go/1.11.2/libexec/pkg/tool/darwin_amd64&quot;</span><br><span class="line">GCCGO=&quot;gccgo&quot;</span><br><span class="line">CC=&quot;clang&quot;</span><br><span class="line">CXX=&quot;clang++&quot;</span><br><span class="line">CGO_ENABLED=&quot;1&quot;</span><br><span class="line">GOMOD=&quot;&quot;</span><br><span class="line">CGO_CFLAGS=&quot;-g -O2&quot;</span><br><span class="line">CGO_CPPFLAGS=&quot;&quot;</span><br><span class="line">CGO_CXXFLAGS=&quot;-g -O2&quot;</span><br><span class="line">CGO_FFLAGS=&quot;-g -O2&quot;</span><br><span class="line">CGO_LDFLAGS=&quot;-g -O2&quot;</span><br><span class="line">PKG_CONFIG=&quot;pkg-config&quot;</span><br><span class="line">GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/4s/4gds6mj166sbhfy_h5wf91dh0000gn/T/go-build299780461=/tmp/go-build -gno-record-gcc-switches -fno-common&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="安装开发工具"><a href="#安装开发工具" class="headerlink" title="安装开发工具"></a>安装开发工具</h3><p>接下来就是安装自己喜欢的开发工具来进行Go的开发了<br>这里推荐几个，根据自己的喜欢下载就可以了   </p>
-<ol>
-<li>Sublime Text</li>
-<li>vsCode</li>
-<li>GoLand</li>
-</ol>
-<p>Sublime Text 和 vsCode 都是需要安装Go相关的插件的，GoLand是JetBrains推出的很好的支持了GO开发的IDE(需要付费)   </p>
-<p>这些都做完以后，就完成Go的开发环境搭建了。<br>Start coding ~</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/24/go-env/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -440,7 +408,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://weirshi.github.io/2018/03/24/blob/">
+    <link itemprop="mainEntityOfPage" href="https://weirshi.github.io/2017/10/02/blob/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="瑾琰">
@@ -459,7 +427,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/24/blob/" itemprop="url">github hexo 搭建个人技术博客</a></h1>
+                <a class="post-title-link" href="/2017/10/02/blob/" itemprop="url">github hexo 搭建个人技术博客</a></h1>
         
 
         <div class="post-meta">
@@ -471,8 +439,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T15:28:37+08:00">
-                2018-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T15:28:37+08:00">
+                2017-10-02
               </time>
             
 
@@ -496,6 +464,163 @@
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/前端/" itemprop="url" rel="index">
                     <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/Blob/" itemprop="url" rel="index">
+                    <span itemprop="name">Blob</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前俩天刚搭建好这个博客，想着写的啥东西，今天就先把用Github+hexo搭建的过程记录一下吧。(虽然很多网上随便一搜就能出来很多😂)<br>我用的是Mac OSX系统搭建的，Windows的大同小异，小伙伴们对比着看吧。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/02/blob/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weirshi.github.io/2017/09/29/start/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="瑾琰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="瑾琰的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/29/start/" itemprop="url">开始使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T15:41:03+08:00">
+                2017-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Blob/" itemprop="url" rel="index">
+                    <span itemprop="name">Blob</span>
                   </a>
                 </span>
 
@@ -533,7 +658,8 @@
       
         
           
-            
+            <h2 id="个人博客记录"><a href="#个人博客记录" class="headerlink" title="个人博客记录"></a>个人博客记录</h2><p>&#160; &#160; &#160; &#160;一直想搭建一个自己的技术博客页面，看别人的博客站点都是自己的域名啥的，无奈自己服务器配置啥的还不太熟，所以就自己找资料看看有没有简单的办法。<br>&#160; &#160; &#160; &#160;了解到了可以用Github来搭建个人博客，就决定自己也搭一个玩玩。自己的Github账号注册了也有一段时间，偶尔也会传一些自己写的代码(虽然没什么人看。。。)。现在，刚搭完这个页面，用的是Github+hexo，以后就可以自己瞎写一点东西啦。。。。<br>(文笔太差。。谅解谅解。。😅)</p>
+
           
         
       
@@ -616,7 +742,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -627,7 +753,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
