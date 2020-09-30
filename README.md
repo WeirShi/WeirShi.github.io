@@ -1,36 +1,55 @@
 # 博客 + 博客内容管理系统
-
 ## Vue2 + ts 多页面应用
 
-## Project setup
-```
-npm install
-```
+### 项目结构
+|-- src
+|   |-- global.d.ts             全局的声明文件
+|   |-- images.d.ts             图片的全局声明文件
+|   |-- ui.ts                   按需加载的UI框架 用了element和Ant-design-vue
+|   |-- api                     API接口
+|   |-- assets                  静态图片
+|   |   |-- images
+|   |-- mixins                  mixin的页面滑动事件
+|   |   |-- scroll.ts
+|   |-- pages                   前端页面
+|   |   |-- admin               后台管理页面
+|   |   |   |-- App.vue
+|   |   |   |-- main.ts
+|   |   |   |-- components
+|   |   |   |-- router
+|   |   |   |   |-- index.ts
+|   |   |   |-- store
+|   |   |   |   |-- index.ts
+|   |   |   |-- views
+|   |   |-- blog                博客页面
+|   |   |   |-- App.vue
+|   |   |   |-- main.ts
+|   |   |   |-- components
+|   |   |   |-- router
+|   |   |   |   |-- index.ts
+|   |   |   |-- store
+|   |   |   |   |-- index.ts
+|   |   |   |-- views
+|-- public                      公共帮助函数方法
+|   |-- utils
+|       |-- cache.ts
+|       |-- debounce.ts
+|       |-- throttle.ts
+|-- style                       公共样式文件
+    |-- base.less
+    |-- color.less
+    |-- grid.less
+    |-- main.less
+    |-- markdown.less
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 参考 
+- ![CodeBear](https://github.com/CB-ysx)的前端博客项目
+- 按照大佬的项目，加上了自己的一些想法，使用Vue + ts写了一个多页面应用
+- blog目录为博客前端页面
+- admin目录为博客后台管理系统前端页面
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## LICENSE
 
-### Run your unit tests
-```
-npm run test:unit
-```
+[MIT](https://opensource.org/licenses/MIT)
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Copyright (c) 2018-present WeirShi

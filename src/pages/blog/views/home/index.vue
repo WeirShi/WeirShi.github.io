@@ -13,7 +13,14 @@ import NoData from "../../components/noData/noData.vue";
     NoData
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  private loading = false;
+  private articleList = [];
+}
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+#home {
+  // height: 1000px;
+}
+</style>

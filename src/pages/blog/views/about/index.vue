@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="about" class="g-layout">
     about
   </div>
 </template>
@@ -11,4 +11,4 @@ import { Component, Vue } from "vue-property-decorator";
 export default class About extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>

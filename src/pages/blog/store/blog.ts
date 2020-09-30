@@ -15,6 +15,8 @@ class Blog extends VuexModule {
 
   public showMobileTabs = false;
 
+  public showRightNav = false;
+
   @Mutation
   setScreen(screenWidth: number, screenHeight: number) {
     this.screen = {
@@ -26,6 +28,11 @@ class Blog extends VuexModule {
   @Mutation
   changeMobileTabs(showMobileTabs: boolean) {
     this.showMobileTabs = showMobileTabs;
+  }
+
+  @Mutation
+  changeRightNav(showRightNav: boolean) {
+    this.showRightNav = showRightNav;
   }
 }
 

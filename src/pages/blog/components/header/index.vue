@@ -2,6 +2,9 @@
   <div
     id="m-header"
     :class="[$store.state.blog.screen.width > 768 ? 'pc' : 'mobile']"
+    :style="{
+      width: $store.state.blog.showRightNav ? 'calc(100% - 320px)' : '100%'
+    }"
   >
     <div
       class="header-wrap"

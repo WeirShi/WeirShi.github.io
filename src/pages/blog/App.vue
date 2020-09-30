@@ -5,26 +5,22 @@
       :class="[
         'app-wrapper',
         $store.state.blog.screen.width > 768 ? 'pc' : 'mobile',
-        $store.state.blog.showMobileTabs ? 'show-tabs' : ''
+        $store.state.blog.showMobileTabs ? 'show-tabs' : '',
+        $store.state.blog.showRightNav ? 'show-right-nav' : ''
       ]"
     >
-      <router-view />
+      <div class="inner">
+        <router-view />
+      </div>
+      <Footer />
     </div>
+
+    <RightNav />
 
     <!-- 返回顶部 -->
     <transition name="slide-fade">
       <div class="to-top" @click="scrollToTop(0)" v-show="showScrollToTop">
-        <span
-          class="to-top-line"
-          v-for="(line, index) in lineData"
-          :key="index"
-          :style="{
-            height: line.height,
-            left: line.left,
-            transform: line.transform
-          }"
-        >
-        </span>
+        <div class="top-icon"></div>
       </div>
     </transition>
   </div>
@@ -34,33 +30,20 @@
 import { Component, Mixins } from "vue-property-decorator";
 import { Scroll } from "../../mixins/scroll";
 import Header from "blog/components/header/index.vue";
+import Footer from "./components/footer/index.vue";
+import RightNav from "./components/rightNav/index.vue";
+
 import debounce from "@/public/utils/debounce";
 import { blogStoreModule } from "./store/blog";
 
 @Component({
   components: {
-    Header
+    Header,
+    Footer,
+    RightNav
   }
 })
 export default class App extends Mixins(Scroll) {
-  private lineData: Array<{ [key: string]: string }> = [
-    {
-      height: "50%",
-      left: "3px",
-      transform: "rotateZ(45deg)"
-    },
-    {
-      height: "100%",
-      top: "0px",
-      transform: "rotateZ(0deg)"
-    },
-    {
-      height: "50%",
-      left: "-3px",
-      transform: "rotateZ(-45deg)"
-    }
-  ];
-
   private showScrollToTop = false;
 
   private debounceScroll = () => debounce(this.scrollListener, 100);
@@ -107,8 +90,23 @@ export default class App extends Mixins(Scroll) {
 <style lang="less">
 @import url("~@/style/main.less");
 .app-wrapper {
-  position: relative;
-  transition: all 0.3s;
+  position: absolute;
+  width: 100%;
+  transition: all 0.1s;
+  padding-bottom: 120px;
+  &.show-right-nav {
+    width: calc(100% - 320px);
+  }
+
+  .inner {
+    max-width: 1000px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0 10px;
+    // min-height: calc(100vh - 120px);
+    -webkit-transition: width 0.3s;
+    transition: width 0.3s;
+  }
   &.pc {
     top: 90px;
   }
@@ -117,32 +115,31 @@ export default class App extends Mixins(Scroll) {
     &.show-tabs {
       top: 232px;
     }
+    .inner {
+      width: 100%;
+    }
   }
 }
 
 .to-top {
+  width: 40px;
+  height: 40px;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
   position: fixed;
-  width: 24px;
-  height: 24px;
-  background-color: @color-main;
-  right: 10px;
-  bottom: 15px;
-  padding: 5px;
+  right: 20px;
+  bottom: 135px;
   z-index: 1050;
   cursor: pointer;
   line-height: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  .to-top-line {
-    position: relative;
-    width: 2px;
-    height: 100%;
-    margin-left: 4px;
-    background-color: @color-white;
-    &:first-child {
-      margin-left: 0px;
-    }
+  border-radius: 50%;
+  .top-icon {
+    width: 14px;
+    height: 16px;
+    margin: 12px auto;
+    background: url("~@/assets/images/to-top.png") 100%/100% no-repeat;
+    background-size: cover;
   }
 }
 

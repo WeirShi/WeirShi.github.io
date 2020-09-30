@@ -38,9 +38,6 @@ export default class NoData extends Vue {
   justify-content: center;
   min-height: 450px;
   position: relative;
-  @media (max-width: 450px) {
-    min-height: 280px;
-  }
   & > p {
     margin-top: 20px;
     color: @color-light-grey;
@@ -50,6 +47,12 @@ export default class NoData extends Vue {
   }
   .default-img {
     width: 420px;
+  }
+  @media (max-width: 450px) {
+    min-height: 280px;
+    .default-img {
+      width: 280px;
+    }
   }
 }
 </style>

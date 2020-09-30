@@ -3,9 +3,19 @@ import Vue from "vue";
 import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 Vue.component(CollapseTransition.name, CollapseTransition);
 
-import { Button, Icon, notification, Collapse } from "ant-design-vue";
+import {
+  Button,
+  Icon,
+  notification,
+  Collapse,
+  Spin,
+  Tag,
+  BackTop,
+  Input,
+  Drawer
+} from "ant-design-vue";
 
-const components = [Button, Icon, Collapse];
+const components = [Button, Icon, Collapse, Spin, Tag, BackTop, Input, Drawer];
 
 components.forEach(component => {
   Vue.use(component);

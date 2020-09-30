@@ -428,7 +428,7 @@
                         <ellipse id="椭圆形" fill="#FFFFFF" transform="translate(7.410392, 3.631302) scale(-1, 1) rotate(-52.780000) translate(-7.410392, -3.631302) " cx="7.41039189" cy="3.63130161" rx="1.59028115" ry="1.25309284"></ellipse>
                         <circle id="椭圆形" fill="#FFFFFF" transform="translate(8.310819, 5.854764) scale(-1, 1) rotate(-69.520000) translate(-8.310819, -5.854764) " cx="8.31081868" cy="5.85476365" r="1"></circle>
                     </g>
-                    <g id="91" filter="url(#filter-71)" transform="translate(19.813534, 6.017444)">
+                    <!-- <g id="91" filter="url(#filter-71)" transform="translate(19.813534, 6.017444)">
                         <g id="Shape">
                             <use fill="#FD5902" fill-rule="evenodd" xlink:href="#path-72"></use>
                             <use fill="black" fill-opacity="1" filter="url(#filter-73)" xlink:href="#path-72"></use>
@@ -440,7 +440,7 @@
                             <use fill="#FD5902" fill-rule="evenodd" xlink:href="#path-74"></use>
                             <use fill="black" fill-opacity="1" filter="url(#filter-76)" xlink:href="#path-74"></use>
                         </g>
-                    </g>
+                    </g> -->
                 </g>
                 <g id="星形">
                     <use fill="url(#linearGradient-77)" fill-rule="evenodd" xlink:href="#path-78"></use>

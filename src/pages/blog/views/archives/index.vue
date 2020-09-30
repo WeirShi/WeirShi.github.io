@@ -1,14 +1,19 @@
 <template>
-  <div>
-    archives
+  <div id="archives" class="g-layout">
+    <NoData text="作者太懒了，还没有写一篇文章~" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import NoData from "../../components/noData/noData.vue";
 
-@Component
+@Component({
+  components: {
+    NoData
+  }
+})
 export default class Archives extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>

@@ -17,7 +17,7 @@ module.exports = {
       entry: "src/pages/blog/main.ts",
       template: "public/blog.html",
       filename: "blog/index.html",
-      title: "Blog",
+      title: "Weir.Shi's Blog",
       // 提取出来的通用 chunk 和 vendor chunk。
       chunks: ["chunk-vendors", "chunk-common", "blog"]
     },
