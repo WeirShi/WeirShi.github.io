@@ -2,45 +2,46 @@
 ## Vue2 + ts 多页面应用
 
 ### 项目结构
-src   
-   | global.d.ts             全局的声明文件     
-   | images.d.ts             图片的全局声明文件      
-   | ui.ts                   按需加载的UI框架 用了element和Ant-design-vue       
-   | api                     API接口        
-   | assets                  静态图片          
-   |--|-- images        
-|--|-- mixins                  mixin的页面滑动事件          
-|--|--|-- scroll.ts        
-|--|-- pages                   前端页面        
-|--|--|-- admin                后台管理页面           
-|--|--|--|-- App.vue            
-|--|--|--|-- main.ts    
-|--|--|--|-- components     
-|--|--|--|-- router     
-|--|--|--|--|-- index.ts       
-|--|--|--|-- store       
-|--|--|--|--|-- index.ts       
-|--|--|--|-- views        
-|--|--|-- blog                 博客页面        
-|--|--|--|-- App.vue        
-|--|--|--|-- main.ts        
-|--|--|--|-- components        
-|--|--|--|-- router        
-|--|--|--|--|-- index.ts        
-|--|--|--|-- store        
-|--|--|--|--|-- index.ts        
-|--|--|--|-- views        
-|-- public                     公共帮助函数方法        
-|--|-- utils        
-|--|-- cache.ts        
-|--|-- debounce.ts        
-|--|-- throttle.ts        
-|--style                       公共样式文件        
-|--|-- base.less        
-|--|-- color.less        
-|--|-- grid.less        
-|--|-- main.less        
-|--|-- markdown.less        
+    |-- src
+    |   |-- global.d.ts
+    |   |-- images.d.ts
+    |   |-- ui.ts
+    |   |-- api
+    |   |-- assets
+    |   |   |-- images
+    |   |-- mixins
+    |   |   |-- scroll.ts
+    |   |-- pages
+    |   |   |-- admin
+    |   |   |   |-- App.vue
+    |   |   |   |-- main.ts
+    |   |       |-- components
+    |   |   |   |-- router
+    |   |   |   |   |-- index.ts
+    |   |   |   |-- store
+    |   |   |       |-- index.ts
+    |   |       |-- views
+    |   |   |-- blog
+    |   |       |-- App.vue
+    |   |       |-- main.ts
+    |   |       |-- components
+    |   |       |-- router
+    |   |       |   |-- index.ts
+    |   |       |-- store
+    |   |       |   |-- index.ts
+    |   |       |-- views
+    |   |-- public
+    |   |   |-- utils
+    |   |       |-- cache.ts
+    |   |       |-- debounce.ts
+    |   |       |-- throttle.ts
+    |   |-- style
+    |       |-- base.less
+    |       |-- color.less
+    |       |-- grid.less
+    |       |-- main.less
+    |       |-- markdown.less
+    
 
 ## 参考 
 - [CodeBear](https://github.com/CB-ysx)的前端博客项目
