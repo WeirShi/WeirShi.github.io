@@ -14,33 +14,33 @@
 |--|-- pages                   前端页面        
 |--|--|-- admin                后台管理页面           
 |--|--|--|-- App.vue            
-|--|--|--|-- main.ts
-|--|--|--|-- components
-|--|--|--|-- router
-|--|--|--|--|-- index.ts
-|--|--|--|-- store
-|--|--|--|--|-- index.ts
-|--|--|--|-- views
-|--|--|-- blog                 博客页面
-|--|--|--|-- App.vue
-|--|--|--|-- main.ts
-|--|--|--|-- components
-|--|--|--|-- router
-|--|--|--|--|-- index.ts
-|--|--|--|-- store
-|--|--|--|--|-- index.ts
-|--|--|--|-- views
-|-- public                     公共帮助函数方法
-|--|-- utils
-|--|-- cache.ts
-|--|-- debounce.ts
-|--|-- throttle.ts
-|--style                       公共样式文件
-|--|-- base.less
-|--|-- color.less
-|--|-- grid.less
-|--|-- main.less
-|--|-- markdown.less
+|--|--|--|-- main.ts    
+|--|--|--|-- components     
+|--|--|--|-- router     
+|--|--|--|--|-- index.ts       
+|--|--|--|-- store       
+|--|--|--|--|-- index.ts       
+|--|--|--|-- views        
+|--|--|-- blog                 博客页面        
+|--|--|--|-- App.vue        
+|--|--|--|-- main.ts        
+|--|--|--|-- components        
+|--|--|--|-- router        
+|--|--|--|--|-- index.ts        
+|--|--|--|-- store        
+|--|--|--|--|-- index.ts        
+|--|--|--|-- views        
+|-- public                     公共帮助函数方法        
+|--|-- utils        
+|--|-- cache.ts        
+|--|-- debounce.ts        
+|--|-- throttle.ts        
+|--style                       公共样式文件        
+|--|-- base.less        
+|--|-- color.less        
+|--|-- grid.less        
+|--|-- main.less        
+|--|-- markdown.less        
 
 ## 参考 
 - [CodeBear](https://github.com/CB-ysx)的前端博客项目
