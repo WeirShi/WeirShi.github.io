@@ -170,8 +170,9 @@ export default class Tags extends Vue {
           this.tagModal.id === 0
             ? await this.$api.FetchAddTag(params)
             : await this.$api.FetchUpdateTag(params);
-        this.tagModal.visible = false;
+
         if (statusCode === 0) {
+          this.tagModal.visible = false;
           this.$message.success(message);
           this.fetchData();
         } else {

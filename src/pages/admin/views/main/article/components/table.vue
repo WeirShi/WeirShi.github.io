@@ -184,6 +184,7 @@ export default class ArticleTable extends Vue {
     return pagination;
   }
 
+  // 移动到草稿箱
   private async moveToDrafts(item: Article): Promise<void> {
     const { statusCode, message } = await this.$api.FetchMoveArticleToDrafts({
       id: item.id
@@ -200,8 +201,8 @@ export default class ArticleTable extends Vue {
     }
   }
 
+  // 移动到列表
   private async moveToList(item: Article): Promise<void> {
-    console.log("移动到列表");
     const { statusCode, message } = await this.$api.FetchMoveArticleToList({
       id: item.id
     });
@@ -217,6 +218,7 @@ export default class ArticleTable extends Vue {
     }
   }
 
+  // 发布，下架文章
   private async publishArticle(item: Article): Promise<void> {
     console.log(item);
     const { statusCode, message } = await this.$api.FetchPublishArticle({
@@ -235,6 +237,7 @@ export default class ArticleTable extends Vue {
     }
   }
 
+  // 删除文章
   private async deleteArticle(item: Article): Promise<void> {
     const { statusCode, message } = await this.$api.FetchDeleteArticle({
       id: item.id
@@ -249,6 +252,14 @@ export default class ArticleTable extends Vue {
     } else {
       this.$message.error(message);
     }
+  }
+
+  private editArticle() {
+    console.log("editArticle");
+  }
+
+  private previewArticle() {
+    console.log("previewArticle");
   }
 }
 </script>

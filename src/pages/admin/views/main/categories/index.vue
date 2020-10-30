@@ -152,9 +152,10 @@ export default class Categories extends Vue {
           this.categoryModal.id === 0
             ? await this.$api.FetchAddCategory(params)
             : await this.$api.FetchUpdateCategory(params);
-        this.categoryModal.visible = false;
+
         if (statusCode === 0) {
           this.$message.success(message);
+          this.categoryModal.visible = false;
           this.fetchData();
         } else {
           this.$message.error(message);
