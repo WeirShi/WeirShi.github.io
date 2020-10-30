@@ -1,42 +1,61 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 
-Vue.use(VueRouter);
-
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+NProgress.inc(0.2);
+NProgress.configure({ easing: "ease", speed: 500, showSpinner: false });
 
+Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
+    path: "/blog/404",
+    name: "NotFound",
+    component: () =>
+      import(/* webpackChunkName: "notFound" */ "blog/views/notFound/index.vue")
+  },
+  {
     path: "/blog",
-    redirect: "/blog/home"
-  },
-  {
-    path: "/blog/home",
+    name: "Blog",
+    redirect: "/blog/home",
     component: () =>
-      import(/* webpackChunkName: "home" */ "blog/views/home/index.vue")
-  },
-  {
-    path: "/blog/categories",
-    component: () =>
-      import(
-        /* webpackChunkName: "categories" */ "blog/views/categories/index.vue"
-      )
-  },
-  {
-    path: "/blog/archives",
-    component: () =>
-      import(/* webpackChunkName: "archives" */ "blog/views/archives/index.vue")
-  },
-  {
-    path: "/blog/about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "blog/views/about/index.vue")
-  },
-  {
-    path: "/blog/search",
-    component: () =>
-      import(/* webpackChunkName: "search" */ "blog/views/search/index.vue")
+      import(/* webpackChunkName: "notFound" */ "blog/views/main/index.vue"),
+    children: [
+      {
+        path: "/blog/home",
+        name: "Home",
+        component: () =>
+          import(/* webpackChunkName: "home" */ "blog/views/home/index.vue")
+      },
+      {
+        path: "/blog/categories",
+        name: "Category",
+        component: () =>
+          import(
+            /* webpackChunkName: "categories" */ "blog/views/categories/index.vue"
+          )
+      },
+      {
+        path: "/blog/archives",
+        name: "Archives",
+        component: () =>
+          import(
+            /* webpackChunkName: "archives" */ "blog/views/archives/index.vue"
+          )
+      },
+      {
+        path: "/blog/about",
+        name: "About",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "blog/views/about/index.vue")
+      },
+      {
+        path: "/blog/search",
+        name: "Search",
+        component: () =>
+          import(/* webpackChunkName: "search" */ "blog/views/search/index.vue")
+      }
+    ]
   }
 ];
 
@@ -55,6 +74,14 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
+  console.log("to", to);
+  if (!to.name) {
+    // 没有该路由
+    next({
+      path: "/blog/404"
+    });
+    return;
+  }
   next();
 });
 

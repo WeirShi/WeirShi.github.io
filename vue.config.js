@@ -9,7 +9,7 @@ module.exports = {
     config.resolve.alias
       .set("@", resolve("src"))
       .set("blog", resolve("src/pages/blog"))
-      .set("admin", resolve("src/pages/adin"))
+      .set("admin", resolve("src/pages/admin"))
       .set("public", resolve("src/public"));
   },
   pages: {

@@ -33,7 +33,7 @@ export default class HeaderTabView extends Vue {
   currentPath: string | undefined;
 
   @Emit("tab-click")
-  private selectTab(tab: TabItem) {
+  private selectTab(tab: TabItem): TabItem {
     return tab;
   }
 }

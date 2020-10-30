@@ -63,7 +63,7 @@
         v-show="!($store.state.blog.screen.width > 768) && showMobileTabs"
       >
         <div
-          class="tab"
+          :class="['tab', currentPath === tab.to ? 'active' : '']"
           v-for="(tab, index) in tabs"
           :key="index"
           @click="selectTab(tab)"

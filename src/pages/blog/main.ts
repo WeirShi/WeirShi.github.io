@@ -4,9 +4,8 @@ import "../../registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
-import "../../ui";
-// import { Scroll } from "../../mixins/scroll";
-// Vue.mixin(Scroll);
+import "@/antd-ui";
+import "@/ele-ui";
 
 import cache from "@/public/utils/cache";
 const { storage } = cache;
