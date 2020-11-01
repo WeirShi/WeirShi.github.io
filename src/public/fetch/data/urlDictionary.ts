@@ -1,4 +1,6 @@
 const baseUrl = `${process.env.VUE_APP_API_URL}`;
+const blogUrl = `${baseUrl}/blog`;
+
 const urlDictionary: Dictionary<string> = {
   login: `${baseUrl}/login`, // 登录
   regist: `${baseUrl}/regist`, // 注册
@@ -11,7 +13,12 @@ const urlDictionary: Dictionary<string> = {
   articleDetail: `${baseUrl}/article/detail`, // 文章详情
   articleToList: `${baseUrl}/article/list`, // 移动文章到列表
   publishArticle: `${baseUrl}/article/publish`, // 移动文章到列表
-  articleToDrafts: `${baseUrl}/article/drafts` // 移动文章到草稿箱
+  articleToDrafts: `${baseUrl}/article/drafts`, // 移动文章到草稿箱
+
+  blogArticleList: `${blogUrl}/article/list`, // 前台文章列表
+  blogArticleDetail: `${blogUrl}/article/detail`, // 前台文章详情
+  blogArticleLike: `${blogUrl}/article/like`, // 前台文章点赞
+  blogArticleWatchTimesAdd: `${blogUrl}/article/times/add` // 前台文章增加访问次数
 };
 
 export default urlDictionary;

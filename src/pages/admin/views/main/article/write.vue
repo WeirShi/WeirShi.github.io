@@ -101,11 +101,9 @@
         </a-form-model-item>
       </a-form-model>
 
-      <a-button type="primary" size="small" @click="saveArticle(0)"
-        >保存到列表</a-button
-      >
+      <a-button type="primary" @click="saveArticle(0)">保存到列表</a-button>
       <a-divider type="vertical" />
-      <a-button type="primary" size="small" @click="saveArticle(1)">
+      <a-button type="primary" @click="saveArticle(1)">
         保存到草稿箱
       </a-button>
     </div>
