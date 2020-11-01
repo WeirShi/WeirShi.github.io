@@ -125,7 +125,6 @@ type ArticleFrom = {
 };
 
 const validate = (rule: any, value: string[], callback: Function) => {
-  console.log("value", value);
   if (value.length === 0) {
     callback(new Error("请选择文章标签/分类！"));
   } else {
@@ -196,34 +195,28 @@ export default class ArticleWrite extends Vue {
     this.articleForm.tags = value;
   }
 
-  private handleSelectTag(tags: string[]): Tag[] {
-    const selectedTags: Tag[] = [];
-    tags.forEach(tag => {
-      const [{ articles, ...others }] = this.tagList.filter(c => {
-        console.log("articles", articles);
-        return c.name === tag;
+  private handleSelectData(list: string[], type: number): Tag[] | Category[] {
+    const selectdData: Tag[] | Category[] = [];
+    const listData = type === 0 ? this.tagList : this.categoryList;
+    list.forEach(item => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [{ articles, ...others }] = listData.filter(c => {
+        return c.name === item;
       });
-      selectedTags.push({ ...others });
+      selectdData.push({ ...others });
     });
 
-    return selectedTags;
+    return selectdData;
   }
 
   private saveArticle(type: number): void {
-    // if (this.articleForm.tags.length === 0) {
-    //   this.$message.warning("请选择标签");
-    //   return;
-    // }
-    // if (this.articleForm.categories.length === 0) {
-    //   this.$message.warning("请选择分类");
-    //   return;
-    // }
     const articleForm = this.$refs.articleForm as FormModel;
     articleForm.validate(async valid => {
       if (valid) {
-        const tags = this.handleSelectTag(this.articleForm.tags);
-        const categories = this.handleSelectCategory(
-          this.articleForm.categories
+        const tags = this.handleSelectData(this.articleForm.tags, 0);
+        const categories = this.handleSelectData(
+          this.articleForm.categories,
+          1
         );
         const params = {
           title: this.articleForm.title,
@@ -234,6 +227,7 @@ export default class ArticleWrite extends Vue {
           categories,
           is_drafts: type === 0 ? 0 : 1
         };
+        console.log("params", params);
         this.loading = true;
         const { statusCode, message } = await this.$api.FetchAddArticle(params);
         this.loading = false;
