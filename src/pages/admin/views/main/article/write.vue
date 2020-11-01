@@ -27,7 +27,7 @@
             allow-clear
           />
         </a-form-model-item>
-        <a-form-model-item label="选择分类">
+        <a-form-model-item label="选择分类" prop="categories">
           <a-select
             :default-value="articleForm.categories"
             mode="multiple"
@@ -43,7 +43,7 @@
             </a-select-option>
           </a-select>
         </a-form-model-item>
-        <a-form-model-item label="选择标签">
+        <a-form-model-item label="选择标签" prop="tags">
           <a-select
             :default-value="articleForm.tags"
             mode="multiple"
@@ -124,6 +124,15 @@ type ArticleFrom = {
   cover: string;
 };
 
+const validate = (rule: any, value: string[], callback: Function) => {
+  console.log("value", value);
+  if (value.length === 0) {
+    callback(new Error("请选择文章标签/分类！"));
+  } else {
+    callback();
+  }
+};
+
 @Component
 export default class ArticleWrite extends Vue {
   private categoryList: Category[] = [];
@@ -147,7 +156,9 @@ export default class ArticleWrite extends Vue {
     cover: [
       { required: true, message: "请输入文章封面图链接!", trigger: "blur" }
     ],
-    content: [{ required: true, message: "请输入文章正文!", trigger: "blur" }]
+    content: [{ required: true, message: "请输入文章正文!", trigger: "blur" }],
+    categories: [{ required: true, validator: validate, trigger: "change" }],
+    tags: [{ required: true, validator: validate, trigger: "change" }]
   };
 
   private async getAllCategory(): Promise<void> {
@@ -199,19 +210,21 @@ export default class ArticleWrite extends Vue {
   }
 
   private saveArticle(type: number): void {
-    if (this.articleForm.tags.length === 0) {
-      this.$message.warning("请选择标签");
-      return;
-    }
-    if (this.articleForm.categories.length === 0) {
-      this.$message.warning("请选择分类");
-      return;
-    }
-    const tags = this.handleSelectTag(this.articleForm.tags);
-    const categories = this.handleSelectCategory(this.articleForm.categories);
+    // if (this.articleForm.tags.length === 0) {
+    //   this.$message.warning("请选择标签");
+    //   return;
+    // }
+    // if (this.articleForm.categories.length === 0) {
+    //   this.$message.warning("请选择分类");
+    //   return;
+    // }
     const articleForm = this.$refs.articleForm as FormModel;
     articleForm.validate(async valid => {
       if (valid) {
+        const tags = this.handleSelectTag(this.articleForm.tags);
+        const categories = this.handleSelectCategory(
+          this.articleForm.categories
+        );
         const params = {
           title: this.articleForm.title,
           content: markdown(this.articleForm.content),
