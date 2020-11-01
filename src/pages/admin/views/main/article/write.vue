@@ -152,23 +152,17 @@ export default class ArticleWrite extends Vue {
     content: [{ required: true, message: "请输入文章正文!", trigger: "blur" }]
   };
 
-  private async getCategoryList(): Promise<void> {
-    const { statusCode, data } = await this.$api.FetchGetCategoryList({
-      pageSize: 100000,
-      current: 1
-    });
+  private async getAllCategory(): Promise<void> {
+    const { statusCode, data } = await this.$api.FetchGetAllCategory();
     if (statusCode === 0) {
-      this.categoryList = data.list;
+      this.categoryList = data;
     }
   }
 
-  private async getTagList(): Promise<void> {
-    const { statusCode, data } = await this.$api.FetchGetTagList({
-      pageSize: 100000,
-      current: 1
-    });
+  private async getAllTag(): Promise<void> {
+    const { statusCode, data } = await this.$api.FetchGetAllTag();
     if (statusCode === 0) {
-      this.tagList = data.list;
+      this.tagList = data;
     }
   }
 
@@ -245,8 +239,8 @@ export default class ArticleWrite extends Vue {
   }
 
   created() {
-    this.getCategoryList();
-    this.getTagList();
+    this.getAllCategory();
+    this.getAllTag();
   }
 }
 </script>
