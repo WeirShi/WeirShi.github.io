@@ -47,6 +47,7 @@ type Category = {
   sort?: number;
   create_time?: string | null;
   update_time?: string | null;
+  articles?: Article[];
 };
 
 type Tag = {
@@ -56,6 +57,7 @@ type Tag = {
   color?: string;
   create_time?: string | null;
   update_time?: string | null;
+  articles?: Article[];
 };
 
 // interface CacheInterface {

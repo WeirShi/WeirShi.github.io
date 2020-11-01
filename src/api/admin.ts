@@ -21,13 +21,12 @@ export const FetchLogin = (params: any, config?: AxiosRequestConfig) =>
   );
 
 /**
- * 用户
+ * 用户详情
  *
  */
 export const FetchGetUser = (params: any, config?: AxiosRequestConfig) =>
   cryptoInstance.get<ApiResponse<Model.UserInfo>>(URL_DIC.user, {
     params,
-    isNeedLogin: true,
     ...config
   });
 
