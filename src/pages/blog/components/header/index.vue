@@ -202,6 +202,8 @@ export default class Header extends Vue {
 
   created() {
     this.toggleLineData = this.lineStyle.normalLineData;
+    const { path } = this.$route;
+    this.currentPath = path;
   }
 }
 </script>

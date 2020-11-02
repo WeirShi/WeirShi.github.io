@@ -11,7 +11,7 @@
             class="category-item"
           >
             {{ category.name }}
-            <span>{{ category.count }}篇</span>
+            <span>{{ category.article_count }}篇</span>
           </div>
         </div>
       </div>
@@ -41,52 +41,47 @@
 import { Component, Vue } from "vue-property-decorator";
 import NoData from "../../components/noData/noData.vue";
 
-type categoryItem = {
-  name: string;
-  count: number;
-};
-type tagItem = {
-  name: string;
-  color?: string;
-};
-
 @Component({
   components: {
     NoData
   }
 })
 export default class Categories extends Vue {
-  private loading = true;
-  private categories: Array<categoryItem> = [
-    {
-      name: "前端",
-      count: 1
-    },
-    {
-      name: "Node",
-      count: 10
-    },
-    {
-      name: "JavaScript",
-      count: 2
-    }
-  ];
+  private loading = false;
+  private categories: Array<Category> = [];
 
-  private tags: Array<tagItem> = [
-    {
-      name: "前端",
-      color: "#87d068"
-    },
-    {
-      name: "后端",
-      color: "#87d068"
-    }
-  ];
+  private tags: Array<Tag> = [];
+
+  private async fetchData() {
+    const promises = [
+      this.$bapi.FetchGetAllCategory(),
+      this.$bapi.FetchGetAllTag()
+    ];
+    this.loading = true;
+    Promise.all(promises)
+      .then(reses => {
+        this.loading = false;
+        if (reses.length !== 2) {
+          this.$message.error("请求失败");
+        } else {
+          const [categoryRes, tagRes] = reses;
+          console.log("categoryRes", categoryRes);
+          console.log("tagRes", tagRes);
+          this.categories = categoryRes.data;
+          this.tags = tagRes.data;
+        }
+      })
+      .catch(() => {
+        this.loading = false;
+        this.$message.error("请求失败");
+      });
+  }
 
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 2000);
+    this.fetchData();
   }
 }
 </script>

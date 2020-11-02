@@ -7,6 +7,9 @@ import store from "./store";
 import "@/antd-ui";
 import "@/ele-ui";
 
+import * as api from "../../api/blog";
+Vue.prototype.$bapi = api;
+
 import cache from "@/public/utils/cache";
 const { storage } = cache;
 storage

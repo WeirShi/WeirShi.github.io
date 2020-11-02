@@ -13,8 +13,12 @@
       :data-source="tagList"
       @change="handleTableChange"
     >
-      <template slot="articles" slot-scope="articles">
-        <a>{{ articles.length }}</a>
+      <template slot="articleCount" slot-scope="articleCount">
+        <a>{{ articleCount }}</a>
+      </template>
+
+      <template slot="updateTime" slot-scope="updateTime">
+        <span>{{ updateTime || "-- --" }}</span>
       </template>
 
       <span slot="action" slot-scope="row">
@@ -92,8 +96,8 @@ export default class Tags extends Vue {
     },
     {
       title: "文章数量",
-      dataIndex: "articles",
-      scopedSlots: { customRender: "articles" },
+      dataIndex: "article_count",
+      scopedSlots: { customRender: "articleCount" },
       width: "20%"
     },
     {
@@ -106,6 +110,7 @@ export default class Tags extends Vue {
       title: "更新时间",
       dataIndex: "update_time",
       width: "20%",
+      scopedSlots: { customRender: "updateTime" },
       ellipsis: true
     },
     {
