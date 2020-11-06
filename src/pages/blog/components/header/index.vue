@@ -110,7 +110,7 @@ export default class Header extends Vue {
       name: "关于",
       icon: "user",
       to: "/blog/about"
-    },
+    }
     // {
     //   name: "友链",
     //   icon: "friends-link",
@@ -121,11 +121,11 @@ export default class Header extends Vue {
     //   icon: "appstore",
     //   to: "morefunc"
     // },
-    {
-      name: "搜索",
-      icon: "search",
-      to: "/blog/search"
-    }
+    // {
+    //   name: "搜索",
+    //   icon: "search",
+    //   to: "/blog/search"
+    // }
   ];
 
   private lineStyle = {

@@ -52,14 +52,26 @@
         </span>
 
         <span v-if="type === 'list' && action.is_publish === 0">
-          <a @click="publishArticle(action)">
-            发布
-          </a>
+          <a-popconfirm
+            title="确定发布该文章吗?"
+            ok-text="Yes"
+            cancel-text="No"
+            @confirm="publishArticle(action)"
+          >
+            <a>发布</a>
+          </a-popconfirm>
           <a-divider type="vertical" />
         </span>
 
         <span v-if="type === 'list' && action.is_publish === 1">
-          <a @click="publishArticle(action)">下架</a>
+          <a-popconfirm
+            title="确定下架该文章吗?"
+            ok-text="Yes"
+            cancel-text="No"
+            @confirm="publishArticle(action)"
+          >
+            <a>下架</a>
+          </a-popconfirm>
           <a-divider type="vertical" />
         </span>
 

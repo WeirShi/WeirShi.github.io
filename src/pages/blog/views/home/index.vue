@@ -6,8 +6,14 @@
       </div>
       <div class="content" v-else>
         <div class="article-list" v-if="articleList.length !== 0">
-          <!-- TODO -->
+          <ArticleCard
+            v-for="article in articleList"
+            :key="article.id"
+            :article="article"
+          />
+
           <a-pagination
+            size="small"
             :current="page.current"
             :total="page.total"
             @change="pageChange"
@@ -22,10 +28,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import NoData from "../../components/noData/noData.vue";
+import ArticleCard from "../../components/article/article-card.vue";
 
 @Component({
   components: {
-    NoData
+    NoData,
+    ArticleCard
   }
 })
 export default class Home extends Vue {
