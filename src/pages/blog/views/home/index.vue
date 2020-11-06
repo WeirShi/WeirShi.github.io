@@ -6,6 +6,7 @@
       </div>
       <div class="content" v-else>
         <div class="article-list" v-if="articleList.length !== 0">
+          <!-- TODO -->
           <a-pagination
             :current="page.current"
             :total="page.total"
@@ -41,20 +42,23 @@ export default class Home extends Vue {
     this.page.pageSize = page;
   }
 
-  created() {
+  private async fetchData() {
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.articleList = [
-        {
-          id: 1,
-          title: "JavaScript",
-          watch_time: 1000,
-          content: "",
-          cover: ""
-        }
-      ];
-    }, 2000);
+    const { statusCode, data, message } = await this.$bapi.FetchGetArticleList({
+      pageSize: this.page.pageSize,
+      current: this.page.current
+    });
+    this.loading = false;
+    if (statusCode === 0) {
+      this.page.total = data.total;
+      this.articleList = data.list;
+    } else {
+      this.$message.error(message);
+    }
+  }
+
+  created() {
+    this.fetchData();
   }
 }
 </script>

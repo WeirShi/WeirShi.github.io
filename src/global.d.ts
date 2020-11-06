@@ -1,6 +1,10 @@
 declare module "element-ui/lib/transitions/collapse-transition";
 declare module "ant-design-vue/lib/locale-provider/zh_CN";
 declare module "nprogress";
+declare module "@kangc/v-md-editor/lib/theme/github.js";
+declare module "@kangc/v-md-editor/lib/theme/vuepress.js";
+declare module "@kangc/v-md-editor/lib/preview";
+
 interface ApiResponse<T> {
   code: number;
   data: T;
@@ -29,8 +33,10 @@ type Article = {
   id: number;
   title: string;
   content: string;
+  html_content: string;
   cover: string;
-  watch_time: number;
+  watch_times: number;
+  like_times: number;
   tags?: Array<Tag>;
   categories?: Array<Category>;
   is_drafts?: number;

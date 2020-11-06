@@ -47,7 +47,7 @@
           <a-divider type="vertical" />
         </span>
         <span v-if="type === 'list'">
-          <a @click="editArticle(action)">编辑</a>
+          <a @click="editArticle(action.id)">编辑</a>
           <a-divider type="vertical" />
         </span>
 
@@ -82,13 +82,27 @@
         </a-popconfirm>
       </template>
     </a-table>
+
+    <a-modal
+      v-model="previewVisible"
+      title="文章预览"
+      width="900px"
+      @ok="previewVisible = false"
+    >
+      <MdPreview :content="previewContent" />
+    </a-modal>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+import MdPreview from "@/public/components/md-preview/index.vue";
 
-@Component
+@Component({
+  components: {
+    MdPreview
+  }
+})
 export default class ArticleTable extends Vue {
   @Prop({
     type: Array,
@@ -179,6 +193,9 @@ export default class ArticleTable extends Vue {
     }
   ];
 
+  private previewVisible = false;
+  private previewContent = "";
+
   @Emit("table-change")
   private handleTableChange(pagination: Pagination): Pagination {
     return pagination;
@@ -254,12 +271,23 @@ export default class ArticleTable extends Vue {
     }
   }
 
-  private editArticle() {
-    console.log("editArticle");
+  private editArticle(id: number) {
+    console.log("editArticle", id);
+    this.$router.push({
+      name: "articleWrite",
+      query: {
+        id: String(id)
+      }
+    });
   }
 
-  private previewArticle() {
-    console.log("previewArticle");
+  private previewArticle({ html_content }: Article) {
+    if (html_content.length === 0) {
+      this.$message.error("该文章没有内容~");
+      return;
+    }
+    this.previewVisible = true;
+    this.previewContent = html_content;
   }
 }
 </script>

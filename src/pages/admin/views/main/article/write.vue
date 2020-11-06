@@ -29,7 +29,7 @@
         </a-form-model-item>
         <a-form-model-item label="选择分类" prop="categories">
           <a-select
-            :default-value="articleForm.categories"
+            :value="articleForm.categories"
             mode="multiple"
             placeholder="请选择分类"
             @change="handleCategories"
@@ -45,7 +45,7 @@
         </a-form-model-item>
         <a-form-model-item label="选择标签" prop="tags">
           <a-select
-            :default-value="articleForm.tags"
+            :value="articleForm.tags"
             mode="multiple"
             placeholder="请选择标签"
             @change="handleTags"
@@ -60,44 +60,10 @@
           </a-select>
         </a-form-model-item>
         <a-form-model-item label="文章正文" prop="content">
-          <mavon-editor
-            class="editor"
-            ref="md"
+          <v-md-editor
             v-model="articleForm.content"
-            :boxShadow="true"
-            defaultOpen="edit"
-            :toolbars="{
-              bold: true, // 粗体
-              italic: true, // 斜体
-              header: true, // 标题
-              underline: true, // 下划线
-              strikethrough: true, // 中划线
-              mark: true, // 标记
-              superscript: true, // 上角标
-              subscript: true, // 下角标
-              quote: true, // 引用
-              ol: true, // 有序列表
-              ul: true, // 无序列表
-              link: true, // 链接
-              imagelink: true, // 图片链接
-              code: true, // code
-              table: true, // 表格
-              fullscreen: false, // 全屏编辑
-              readmodel: true, // 沉浸式阅读
-              htmlcode: false, // 展示html源码
-              help: true, // 帮助
-              undo: true, // 上一步
-              redo: true, // 下一步
-              trash: true, // 清空
-              save: false, // 保存（触发events中的save事件）
-              navigation: false, // 导航目录
-              alignleft: false, // 左对齐
-              aligncenter: false, // 居中
-              alignright: false, // 右对齐
-              subfield: true, // 单双栏模式
-              preview: true // 预览
-            }"
-          />
+            height="400px"
+          ></v-md-editor>
         </a-form-model-item>
       </a-form-model>
 
@@ -112,8 +78,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { markdown } from "@/public/utils/markdown";
 import { FormModel } from "ant-design-vue";
+
+import VueMarkdownEditor from "@kangc/v-md-editor";
 
 type ArticleFrom = {
   categories: string[];
@@ -137,6 +104,8 @@ export default class ArticleWrite extends Vue {
   private categoryList: Category[] = [];
   private tagList: Tag[] = [];
   private loading = false;
+
+  private editId = 0;
 
   private articleForm: ArticleFrom = {
     categories: [], // 关联的分类
@@ -218,23 +187,38 @@ export default class ArticleWrite extends Vue {
           this.articleForm.categories,
           1
         );
+        // 调用方法将 markdown 转换成 html 并使用 xss 过滤
+        const html = VueMarkdownEditor.xss.process(
+          VueMarkdownEditor.themeConfig.markdownParser.render(
+            this.articleForm.content
+          )
+        );
+        console.log("html", html);
         const params = {
+          id: 0,
           title: this.articleForm.title,
-          content: markdown(this.articleForm.content),
+          content: this.articleForm.content,
+          html_content: html,
           description: this.articleForm.description,
           cover: this.articleForm.cover,
           tags,
           categories,
           is_drafts: type === 0 ? 0 : 1
         };
+        if (this.editId) {
+          params.id = this.editId;
+        }
         console.log("params", params);
         this.loading = true;
-        const { statusCode, message } = await this.$api.FetchAddArticle(params);
+        const { statusCode, message } =
+          this.editId === 0
+            ? await this.$api.FetchAddArticle(params)
+            : await this.$api.FetchUpdateArticle(params);
         this.loading = false;
         if (statusCode === 0) {
-          articleForm.resetFields();
-          this.articleForm.tags = [];
-          this.articleForm.categories = [];
+          this.$router.push({
+            name: "articleList"
+          });
           this.$message.success(message);
         } else {
           this.$message.error(message);
@@ -243,9 +227,40 @@ export default class ArticleWrite extends Vue {
     });
   }
 
+  private async fetchArticleDetail(): Promise<void> {
+    if (this.editId === 0) {
+      return;
+    }
+    const {
+      statusCode,
+      data,
+      message
+    } = await this.$api.FetchGetArticleDetail({ id: this.editId });
+    if (statusCode === 0) {
+      console.log(data);
+      const { categories, tags, content, title, cover, description } = data;
+      this.articleForm.categories = categories.map((category: Category) => {
+        return category.name;
+      });
+      console.log(this.articleForm.categories);
+      this.articleForm.tags = tags.map((tag: Tag) => {
+        return tag.name;
+      });
+      this.articleForm.content = content;
+      this.articleForm.title = title;
+      this.articleForm.cover = cover;
+      this.articleForm.description = description;
+    } else {
+      this.$message.error(message);
+    }
+  }
+
   created() {
     this.getAllCategory();
     this.getAllTag();
+
+    this.editId = this.$route.query.id ? Number(this.$route.query.id) : 0;
+    this.fetchArticleDetail();
   }
 }
 </script>
