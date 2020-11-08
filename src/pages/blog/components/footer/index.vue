@@ -45,8 +45,6 @@ export default class Footer extends Vue {}
 <style scoped lang="less">
 @import "~@/style/color.less";
 #m-footer {
-  position: fixed;
-  bottom: 0;
   height: 120px;
   width: 100%;
   background-color: @color-main;

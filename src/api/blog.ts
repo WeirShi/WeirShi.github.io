@@ -42,3 +42,9 @@ export const FetchGetArticleList = (params: any, config?: AxiosRequestConfig) =>
       ...config
     }
   );
+
+export const FetchArticleDetail = (params: any, config?: AxiosRequestConfig) =>
+  cryptoInstance.get<ApiResponse<Article>>(URL_DIC.blogArticleDetail, {
+    params,
+    ...config
+  });

@@ -7,7 +7,7 @@
           backgroundImage: 'url(' + article.cover + ')'
         }"
       >
-        <div class="article-title">
+        <div class="article-title" @click="readMore(article.id)">
           <span>{{ article.title }}</span>
         </div>
       </div>
@@ -27,25 +27,42 @@
           <a-icon class="iconfont" type="eye" />{{ article.watch_times }}次围观
         </p>
       </div>
-      <div class="article-sub-message">{{ article.description }}</div>
+      <div class="article-description">{{ article.description }}</div>
       <div class="tags" v-if="article.tags.length > 0">
-        <div v-for="(tag, index) in article.tags" :key="index" class="tag">
-          <a-icon class="iconfont" type="tag" />
-          {{ tag.name }}
+        <div
+          v-for="(tag, index) in article.tags"
+          :key="index"
+          class="tag-wrapper"
+        >
+          <Tag :tag="tag" />
         </div>
       </div>
-      <div class="read-more">阅读全文 >></div>
+      <div class="read-more" @click="readMore(article.id)">阅读全文 >></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import Tag from "../tag/index.vue";
 
-@Component
+@Component({
+  components: {
+    Tag
+  }
+})
 export default class ArticleCard extends Vue {
   @Prop()
   article: object | undefined;
+
+  private readMore(id: number): void {
+    this.$router.push({
+      name: "ArticleDetail",
+      params: {
+        id: String(id)
+      }
+    });
+  }
 
   created() {
     console.log(this.article);
@@ -154,7 +171,7 @@ export default class ArticleCard extends Vue {
       }
     }
     .classify {
-      color: #444444;
+      color: #444;
       border-bottom: 1px solid @color-main;
       cursor: pointer;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -174,9 +191,9 @@ export default class ArticleCard extends Vue {
       }
     }
   }
-  .article-sub-message {
-    color: #666666;
-    border-left: 2px solid #666666;
+  .article-description {
+    color: #666;
+    border-left: 2px solid #666;
     padding-left: 5px;
     font-size: 16px;
     @media (max-width: 768px) {
@@ -215,51 +232,8 @@ export default class ArticleCard extends Vue {
       }
     }
   }
-  .tags {
-    width: 100%;
-    padding: 10px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #eeeeee;
-    margin-bottom: 10px;
-    .tag {
-      color: @color-white;
-      padding: 5px;
-      background-color: @color-main;
-      font-size: 12px;
-      margin-right: 5px;
-      border-radius: 5px;
-      transition: all 0.3s;
-      position: relative;
-      margin-left: 10px;
-      margin-top: 10px;
-      line-height: 1;
-      cursor: pointer;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      &:hover {
-        background-color: lighten(@color-main, 20%);
-        &:before {
-          border-right: 12px solid lighten(@color-main, 20%);
-        }
-      }
-      &:before {
-        position: absolute;
-        left: -9px;
-        top: 0;
-        width: 0;
-        height: 0;
-        content: "";
-        border-top: 11px solid transparent;
-        border-bottom: 11px solid transparent;
-        border-right: 12px solid @color-main;
-        transition: all 0.3s;
-        .iconfont {
-          font-size: 12px;
-        }
-      }
-    }
+  .tag-wrapper {
+    display: inline-block;
   }
 }
 

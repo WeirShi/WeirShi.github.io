@@ -27,4 +27,8 @@ export default class MdPreview extends Vue {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+#md-preview {
+  width: 100%;
+}
+</style>

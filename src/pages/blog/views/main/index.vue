@@ -93,7 +93,6 @@ export default class App extends Mixins(Scroll) {
   position: absolute;
   width: 100%;
   transition: all 0.1s;
-  padding-bottom: 120px;
   &.show-right-nav {
     width: calc(100% - 320px);
   }
