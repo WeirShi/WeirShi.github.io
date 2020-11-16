@@ -26,6 +26,10 @@
         <p class="watch">
           <a-icon class="iconfont" type="eye" />{{ article.watch_times }}次围观
         </p>
+        •
+        <p class="heart">
+          <a-icon class="iconfont" type="heart" />{{ article.like_times }}次围观
+        </p>
       </div>
       <div class="article-description">{{ article.description }}</div>
       <div class="tags" v-if="article.tags.length > 0">
@@ -165,7 +169,8 @@ export default class ArticleCard extends Vue {
     }
     .time,
     .category,
-    .watch {
+    .watch,
+    .heart {
       margin: 0 6px;
       .iconfont {
         margin-right: 6px;

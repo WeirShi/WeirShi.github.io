@@ -57,6 +57,19 @@ export const FetchArticleDetail = (params: any, config?: AxiosRequestConfig) =>
 
 /**
  * @file blog apis
+ * @description 文章增加观看次数
+ * @author WeirShi
+ * @date 2010-11-08
+ */
+export const FetchAddWatchTimes = (params: any, config?: AxiosRequestConfig) =>
+  cryptoInstance.put<ApiResponse<Article>>(
+    URL_DIC.blogArticleWatchTimesAdd,
+    params,
+    config
+  );
+
+/**
+ * @file blog apis
  * @description 前一篇、后一篇文章
  * @author WeirShi
  * @date 2010-11-16
@@ -72,13 +85,13 @@ export const FetchArticlePreOrNext = (
 
 /**
  * @file blog apis
- * @description 文章增加观看次数
+ * @description 文章增加点赞次数
  * @author WeirShi
  * @date 2010-11-08
  */
-export const FetchAddWatchTimes = (params: any, config?: AxiosRequestConfig) =>
+export const FetchAddLikeTimes = (params: any, config?: AxiosRequestConfig) =>
   cryptoInstance.put<ApiResponse<Article>>(
-    URL_DIC.blogArticleWatchTimesAdd,
+    URL_DIC.blogArticleLike,
     params,
     config
   );

@@ -26,6 +26,12 @@
               article.watch_times
             }}次围观
           </p>
+          •
+          <p class="heart">
+            <a-icon class="iconfont" type="heart" />{{
+              article.like_times
+            }}次点赞
+          </p>
         </div>
         <div class="article-description">{{ article.description }}</div>
       </div>
@@ -41,12 +47,21 @@
         </div>
       </div>
 
+      <div class="like-wrap">
+        <p>如果我的文章对您有帮助！留下您的点赞吧~</p>
+        <LikeBtn :id="id" @like="addLikeTimes" />
+      </div>
+
       <div class="pre-next-wrap">
-        <span class="pre-wrap" v-if="preArticle">
+        <span class="pre-wrap" v-if="preArticle" @click="toPage(preArticle.id)">
           <a-icon type="left" />
           {{ preArticle.title }}
         </span>
-        <span class="next-wrap" v-if="nextArticle">
+        <span
+          class="next-wrap"
+          v-if="nextArticle"
+          @click="toPage(nextArticle.id)"
+        >
           {{ nextArticle.title }}
           <a-icon type="right" />
         </span>
@@ -66,12 +81,14 @@ import { Component, Vue } from "vue-property-decorator";
 import NoData from "../../components/noData/noData.vue";
 import MdPreview from "@/public/components/md-preview/index.vue";
 import Tag from "../../components/tag/index.vue";
+import LikeBtn from "../../components/like-btn/index.vue";
 
 @Component({
   components: {
     NoData,
     MdPreview,
-    Tag
+    Tag,
+    LikeBtn
   }
 })
 export default class ArticleDetail extends Vue {
@@ -107,6 +124,12 @@ export default class ArticleDetail extends Vue {
     }
   }
 
+  private addLikeTimes(code: number): void {
+    if (code === 0) {
+      this.article && this.article.like_times++;
+    }
+  }
+
   private async fetchPreOrNext(): Promise<void> {
     if (this.id === 0) {
       return;
@@ -121,10 +144,20 @@ export default class ArticleDetail extends Vue {
     }
   }
 
+  private toPage(id: number): void {
+    console.log(id);
+    this.$router.push({
+      name: "ArticleDetail",
+      params: {
+        id: String(id)
+      }
+    });
+  }
+
   created() {
     this.id = this.$route.params.id ? Number(this.$route.params.id) : 0;
     this.fetchData();
-    this.addWatchTimes();
+    // this.addWatchTimes();
     this.fetchPreOrNext();
   }
 }
@@ -195,7 +228,8 @@ export default class ArticleDetail extends Vue {
         }
         .time,
         .category,
-        .watch {
+        .watch,
+        .heart {
           margin: 0 6px;
           .iconfont {
             margin-right: 6px;
@@ -247,6 +281,16 @@ export default class ArticleDetail extends Vue {
           color: lighten(#555555, 20%);
         }
       }
+    }
+
+    .like-wrap {
+      width: 100%;
+      padding: 20px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #eee;
     }
   }
 }
