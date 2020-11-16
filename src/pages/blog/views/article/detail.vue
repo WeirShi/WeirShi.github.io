@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import NoData from "../../components/noData/noData.vue";
 import MdPreview from "@/public/components/md-preview/index.vue";
 import Tag from "../../components/tag/index.vue";
@@ -145,7 +145,6 @@ export default class ArticleDetail extends Vue {
   }
 
   private toPage(id: number): void {
-    console.log(id);
     this.$router.push({
       name: "ArticleDetail",
       params: {
@@ -154,11 +153,20 @@ export default class ArticleDetail extends Vue {
     });
   }
 
-  created() {
+  initData(): void {
     this.id = this.$route.params.id ? Number(this.$route.params.id) : 0;
     this.fetchData();
-    // this.addWatchTimes();
+    this.addWatchTimes();
     this.fetchPreOrNext();
+  }
+
+  @Watch("$route")
+  routeChange() {
+    this.initData();
+  }
+
+  created() {
+    this.initData();
   }
 }
 </script>
