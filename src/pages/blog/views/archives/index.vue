@@ -13,7 +13,21 @@ import NoData from "../../components/noData/noData.vue";
     NoData
   }
 })
-export default class Archives extends Vue {}
+export default class Archives extends Vue {
+  private fetchData() {
+    // try {
+    //   setTimeout(() => {
+    //     console.log(b);
+    //   }, 1000)
+    // } catch (error) {
+    //   console.log('error', error);
+    // }
+  }
+
+  created() {
+    this.fetchData();
+  }
+}
 </script>
 
 <style scoped lang="less"></style>

@@ -43,8 +43,42 @@ export const FetchGetArticleList = (params: any, config?: AxiosRequestConfig) =>
     }
   );
 
+/**
+ * @file blog apis
+ * @description 文章详情
+ * @author WeirShi
+ * @date 2010-11-08
+ */
 export const FetchArticleDetail = (params: any, config?: AxiosRequestConfig) =>
   cryptoInstance.get<ApiResponse<Article>>(URL_DIC.blogArticleDetail, {
     params,
     ...config
   });
+
+/**
+ * @file blog apis
+ * @description 前一篇、后一篇文章
+ * @author WeirShi
+ * @date 2010-11-16
+ */
+export const FetchArticlePreOrNext = (
+  params: any,
+  config?: AxiosRequestConfig
+) =>
+  cryptoInstance.get<ApiResponse<Article>>(URL_DIC.blogArticleNext, {
+    params,
+    ...config
+  });
+
+/**
+ * @file blog apis
+ * @description 文章增加观看次数
+ * @author WeirShi
+ * @date 2010-11-08
+ */
+export const FetchAddWatchTimes = (params: any, config?: AxiosRequestConfig) =>
+  cryptoInstance.put<ApiResponse<Article>>(
+    URL_DIC.blogArticleWatchTimesAdd,
+    params,
+    config
+  );

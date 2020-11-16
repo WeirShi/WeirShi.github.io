@@ -15,7 +15,7 @@
       <Footer />
     </div>
 
-    <RightNav />
+    <!-- <RightNav /> -->
 
     <!-- 返回顶部 -->
     <transition name="slide-fade">
@@ -102,7 +102,8 @@ export default class App extends Mixins(Scroll) {
     min-width: 320px;
     margin: 0 auto;
     padding: 0 10px;
-    // min-height: calc(100vh - 120px);
+    // min-height: calc( - 120px);
+    min-height: 80vh;
     -webkit-transition: width 0.3s;
     transition: width 0.3s;
   }

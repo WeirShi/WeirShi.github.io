@@ -18,7 +18,7 @@
           }}
         </p>
         •
-        <p class="category">
+        <p class="category" v-if="article.categories.length > 0">
           <a-icon class="iconfont" type="folder" />
           <span class="classify">{{ article.categories[0].name }}</span>
         </p>
@@ -52,7 +52,12 @@ import Tag from "../tag/index.vue";
   }
 })
 export default class ArticleCard extends Vue {
-  @Prop()
+  @Prop({
+    type: Object,
+    default: {
+      categories: []
+    }
+  })
   article: object | undefined;
 
   private readMore(id: number): void {
@@ -62,10 +67,6 @@ export default class ArticleCard extends Vue {
         id: String(id)
       }
     });
-  }
-
-  created() {
-    console.log(this.article);
   }
 }
 </script>

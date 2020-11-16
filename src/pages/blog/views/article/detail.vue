@@ -40,6 +40,17 @@
           <Tag :tag="tag" />
         </div>
       </div>
+
+      <div class="pre-next-wrap">
+        <span class="pre-wrap" v-if="preArticle">
+          <a-icon type="left" />
+          {{ preArticle.title }}
+        </span>
+        <span class="next-wrap" v-if="nextArticle">
+          {{ nextArticle.title }}
+          <a-icon type="right" />
+        </span>
+      </div>
     </div>
 
     <NoData
@@ -67,6 +78,8 @@ export default class ArticleDetail extends Vue {
   private loading = false;
   private id = 0;
   private article: Article | null = null;
+  private preArticle: Article | null = null;
+  private nextArticle: Article | null = null;
 
   private async fetchData(): Promise<void> {
     if (this.id === 0) {
@@ -82,9 +95,37 @@ export default class ArticleDetail extends Vue {
     }
   }
 
+  private async addWatchTimes(): Promise<void> {
+    if (this.id === 0) {
+      return;
+    }
+    const { statusCode } = await this.$bapi.FetchAddWatchTimes({
+      id: this.id
+    });
+    if (statusCode === 0) {
+      this.article && this.article.watch_times++;
+    }
+  }
+
+  private async fetchPreOrNext(): Promise<void> {
+    if (this.id === 0) {
+      return;
+    }
+    const { statusCode, data } = await this.$bapi.FetchArticlePreOrNext({
+      id: this.id
+    });
+    if (statusCode === 0) {
+      const { pre, next } = data;
+      this.preArticle = pre;
+      this.nextArticle = next;
+    }
+  }
+
   created() {
     this.id = this.$route.params.id ? Number(this.$route.params.id) : 0;
     this.fetchData();
+    this.addWatchTimes();
+    this.fetchPreOrNext();
   }
 }
 </script>
@@ -168,8 +209,43 @@ export default class ArticleDetail extends Vue {
       }
     }
     .tags {
+      width: 100%;
+      padding: 10px 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
       .tag-wrapper {
         display: inline-block;
+      }
+    }
+
+    .pre-next-wrap {
+      width: 100%;
+      padding-top: 25px;
+      display: flex;
+      flex-direction: row;
+      font-size: 14px;
+      color: #555;
+      font-weight: bold;
+      .pre-wrap {
+        padding-right: 10px;
+        text-align: left;
+      }
+      .next-wrap {
+        padding-left: 10px;
+        text-align: right;
+      }
+      .pre-wrap,
+      .next-wrap {
+        flex: 1;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        &:hover {
+          color: lighten(#555555, 20%);
+        }
       }
     }
   }

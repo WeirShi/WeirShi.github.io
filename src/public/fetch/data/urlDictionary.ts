@@ -17,8 +17,9 @@ const urlDictionary: Dictionary<string> = {
 
   blogArticleList: `${blogUrl}/article/list`, // 前台文章列表
   blogArticleDetail: `${blogUrl}/article/detail`, // 前台文章详情
+  blogArticleNext: `${blogUrl}/article/next`, // 前一篇、后一篇文章
   blogArticleLike: `${blogUrl}/article/like`, // 前台文章点赞
-  blogArticleWatchTimesAdd: `${blogUrl}/article/times/add`, // 前台文章增加访问次数
+  blogArticleWatchTimesAdd: `${blogUrl}/article/watchtimes/add`, // 前台文章增加访问次数
   blogAllCategory: `${blogUrl}/category/all`, // 所有分类
   blogAllTag: `${blogUrl}/tag/all` // 所有标签
 };

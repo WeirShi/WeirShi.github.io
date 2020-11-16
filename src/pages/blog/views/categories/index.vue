@@ -4,7 +4,7 @@
     <div class="content" v-if="!loading">
       <div class="categories-wrap" v-if="categories.length !== 0">
         <p class="title">分类</p>
-        <div class="inner">
+        <div class="category">
           <div
             v-for="(category, index) in categories"
             :key="index"
@@ -17,7 +17,7 @@
       </div>
       <div class="tags-wrap" v-if="tags.length !== 0">
         <p class="title">标签</p>
-        <div class="inner">
+        <div class="tag">
           <div
             v-for="(tag, index) in tags"
             :key="index"
@@ -106,7 +106,7 @@ export default class Categories extends Vue {
   }
   .categories-wrap {
     margin-bottom: 60px;
-    .inner {
+    .category {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -137,7 +137,7 @@ export default class Categories extends Vue {
     }
   }
   .tags-wrap {
-    .inner {
+    .tag {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -147,35 +147,6 @@ export default class Categories extends Vue {
         cursor: pointer;
         margin: 5px;
       }
-      // .tag-item {
-      //   position: relative;
-      //   padding: 5px 10px;
-      //   margin: 5px;
-      //   cursor: pointer;
-      //   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      //   color: @color-main;
-      //   &:after {
-      //     content: "";
-      //     position: absolute;
-      //     bottom: 0px;
-      //     left: 0;
-      //     width: 100%;
-      //     height: 2px;
-      //     background-color: @color-main;
-      //     visibility: hidden;
-      //     transform: scaleX(0);
-      //     transition-duration: 0.2s;
-      //     transition-timing-function: ease;
-      //     &:hover {
-      //       &:after {
-      //         visibility: visible;
-      //         transform: scaleX(1);
-      //         transition-duration: 0.2s;
-      //         transition-timing-function: ease;
-      //       }
-      //     }
-      //   }
-      // }
     }
   }
 }
