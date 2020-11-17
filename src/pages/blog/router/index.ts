@@ -62,6 +62,14 @@ const routes: Array<RouteConfig> = [
           import(
             /* webpackChunkName: "articleDetail" */ "blog/views/article/detail.vue"
           )
+      },
+      {
+        path: "/blog/article/:type/:id",
+        name: "ArticleListByCategory",
+        component: () =>
+          import(
+            /* webpackChunkName: "articleListByCategory" */ "blog/views/categories/list.vue"
+          )
       }
     ]
   }

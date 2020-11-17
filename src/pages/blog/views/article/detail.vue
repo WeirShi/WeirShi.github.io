@@ -18,7 +18,14 @@
           •
           <p class="category">
             <a-icon class="iconfont" type="folder" />
-            <span class="classify">{{ article.categories[0].name }}</span>
+            <span
+              class="classify"
+              v-for="(category, index) in article.categories"
+              :key="index"
+              @click="toPage(category.id, 'tag')"
+            >
+              {{ category.name }}
+            </span>
           </p>
           •
           <p class="watch">
@@ -43,7 +50,7 @@
           :key="index"
           class="tag-wrapper"
         >
-          <Tag :tag="tag" />
+          <Tag :tag="tag" @click="toPage(tag.id, 'tag')" />
         </div>
       </div>
 
@@ -83,6 +90,11 @@ import MdPreview from "@/public/components/md-preview/index.vue";
 import Tag from "../../components/tag/index.vue";
 import LikeBtn from "../../components/like-btn/index.vue";
 
+type ArticlePreview = {
+  id: number;
+  title: string;
+};
+
 @Component({
   components: {
     NoData,
@@ -95,8 +107,8 @@ export default class ArticleDetail extends Vue {
   private loading = false;
   private id = 0;
   private article: Article | null = null;
-  private preArticle: Article | null = null;
-  private nextArticle: Article | null = null;
+  private preArticle: ArticlePreview | null = null;
+  private nextArticle: ArticlePreview | null = null;
 
   private async fetchData(): Promise<void> {
     if (this.id === 0) {
@@ -144,11 +156,12 @@ export default class ArticleDetail extends Vue {
     }
   }
 
-  private toPage(id: number): void {
+  private toPage(id: number, type: string): void {
     this.$router.push({
-      name: "ArticleDetail",
+      name: type ? "ArticleListByCategory" : "ArticleDetail",
       params: {
-        id: String(id)
+        id: String(id),
+        type
       }
     });
   }

@@ -21,7 +21,8 @@ const urlDictionary: Dictionary<string> = {
   blogArticleLike: `${blogUrl}/article/like`, // 前台文章点赞
   blogArticleWatchTimesAdd: `${blogUrl}/article/watchtimes/add`, // 前台文章增加访问次数
   blogAllCategory: `${blogUrl}/category/all`, // 所有分类
-  blogAllTag: `${blogUrl}/tag/all` // 所有标签
+  blogAllTag: `${blogUrl}/tag/all`, // 所有标签
+  blogArticleListByCategory: `${blogUrl}` // 根据标签获取文章列表
 };
 
 export default urlDictionary;

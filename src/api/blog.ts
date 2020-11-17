@@ -87,11 +87,26 @@ export const FetchArticlePreOrNext = (
  * @file blog apis
  * @description 文章增加点赞次数
  * @author WeirShi
- * @date 2010-11-08
+ * @date 2010-11-16
  */
 export const FetchAddLikeTimes = (params: any, config?: AxiosRequestConfig) =>
   cryptoInstance.put<ApiResponse<Article>>(
     URL_DIC.blogArticleLike,
     params,
     config
+  );
+
+/**
+ * @file blog apis
+ * @description 根据标签获取文章列表
+ * @author WeirShi
+ * @date 2010-11-17
+ */
+export const FetchArticleListByCategory = (
+  params: any,
+  config?: AxiosRequestConfig
+) =>
+  cryptoInstance.get<ApiResponse<Article>>(
+    `${URL_DIC.blogArticleListByCategory}/${params.type}/articles`,
+    { params, ...config }
   );
