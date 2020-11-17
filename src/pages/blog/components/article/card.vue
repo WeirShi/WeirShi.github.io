@@ -10,17 +10,15 @@
             article.publish_time
           }}
         </p>
-        <!-- •
-        <p class="category" v-if="article.categories.length > 0">
-          <a-icon class="iconfont" type="folder" />
-          <span
-            class="classify"
-            v-for="(category, index) in article.categories"
-            :key="index"
-          >
-            {{ category.name }}
-          </span>
-        </p> -->
+        <div v-if="category">
+          •
+          <p class="category">
+            <a-icon class="iconfont" type="folder" />
+            <span class="classify">
+              {{ category.name }}
+            </span>
+          </p>
+        </div>
         •
         <p class="watch">
           <a-icon class="iconfont" type="eye" />{{ article.watch_times }}次围观
@@ -31,15 +29,11 @@
         </p>
       </div>
       <div class="article-description">{{ article.description }}</div>
-      <!-- <div class="tags" v-if="article.tags.length > 0">
-        <div
-          v-for="(tag, index) in article.tags"
-          :key="index"
-          class="tag-wrapper"
-        >
+      <div class="tags" v-if="tag">
+        <div class="tag-wrapper">
           <Tag :tag="tag" />
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +55,12 @@ export default class Card extends Vue {
     }
   })
   article: object | undefined;
+
+  @Prop()
+  category: object | undefined | null;
+
+  @Prop()
+  tag: object | undefined | null;
 
   private readMore(id: number): void {
     this.$router.push({

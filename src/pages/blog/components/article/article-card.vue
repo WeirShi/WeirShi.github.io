@@ -44,8 +44,9 @@
           v-for="(tag, index) in article.tags"
           :key="index"
           class="tag-wrapper"
+          @click="toPage(tag.id, 'tag')"
         >
-          <Tag :tag="tag" @click="toPage(tag.id, 'tag')" />
+          <Tag :tag="tag" />
         </div>
       </div>
       <div class="read-more" @click="readMore(article.id)">阅读全文 >></div>

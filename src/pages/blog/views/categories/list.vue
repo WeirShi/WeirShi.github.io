@@ -10,6 +10,8 @@
           v-for="article in articleList"
           :key="article.id"
           :article="article"
+          :category="category"
+          :tag="tag"
         />
       </div>
 
@@ -34,6 +36,8 @@ export default class CategoryList extends Vue {
   private id = 0;
   private loading = false;
   private articleList: Array<Article> = [];
+  private category: Category | null = null;
+  private tag: Tag | null = null;
 
   private initData(): void {
     const { id, type } = this.$route.params;
@@ -54,7 +58,17 @@ export default class CategoryList extends Vue {
     });
     this.loading = false;
     if (statusCode === 0) {
-      this.articleList = data;
+      const { articles, ...others } = data;
+      this.articleList = articles;
+      if (this.type === "category") {
+        this.category = {
+          ...others
+        };
+      } else {
+        this.tag = {
+          ...others
+        };
+      }
       //   console.log("articleList", this.articleList);
     } else {
       this.$message.error(message);

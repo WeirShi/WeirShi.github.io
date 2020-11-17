@@ -49,8 +49,9 @@
           v-for="(tag, index) in article.tags"
           :key="index"
           class="tag-wrapper"
+          @click="toPage(tag.id, 'tag')"
         >
-          <Tag :tag="tag" @click="toPage(tag.id, 'tag')" />
+          <Tag :tag="tag" />
         </div>
       </div>
 
