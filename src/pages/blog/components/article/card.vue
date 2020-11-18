@@ -10,15 +10,21 @@
             article.publish_time
           }}
         </p>
-        <div v-if="category">
-          •
-          <p class="category">
-            <a-icon class="iconfont" type="folder" />
-            <span class="classify">
-              {{ category.name }}
-            </span>
-          </p>
-        </div>
+        •
+        <p
+          class="category"
+          v-if="article.categories && article.categories.length > 0"
+        >
+          <a-icon class="iconfont" type="folder" />
+          <span
+            class="classify"
+            v-for="(category, index) in article.categories"
+            :key="index"
+            @click="toPage(category.id, 'category')"
+          >
+            {{ category.name }}
+          </span>
+        </p>
         •
         <p class="watch">
           <a-icon class="iconfont" type="eye" />{{ article.watch_times }}次围观
@@ -29,8 +35,13 @@
         </p>
       </div>
       <div class="article-description">{{ article.description }}</div>
-      <div class="tags" v-if="tag">
-        <div class="tag-wrapper">
+      <div class="tags" v-if="article.tags && article.tags.length > 0">
+        <div
+          v-for="(tag, index) in article.tags"
+          :key="index"
+          class="tag-wrapper"
+          @click="toPage(tag.id, 'tag')"
+        >
           <Tag :tag="tag" />
         </div>
       </div>

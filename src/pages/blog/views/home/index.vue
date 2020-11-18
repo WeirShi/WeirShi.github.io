@@ -26,7 +26,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
+import { Scroll } from "@/mixins/scroll";
 import NoData from "../../components/noData/noData.vue";
 import ArticleCard from "../../components/article/article-card.vue";
 
@@ -36,7 +37,7 @@ import ArticleCard from "../../components/article/article-card.vue";
     ArticleCard
   }
 })
-export default class Home extends Vue {
+export default class Home extends Mixins(Scroll) {
   private loading = false;
   private page: Pagination = {
     pageSize: 10,
@@ -47,10 +48,11 @@ export default class Home extends Vue {
 
   private pageChange(page: number, pageSize: number): void {
     console.log(page, pageSize);
+    this.scrollToTop(0, false);
     this.page.pageSize = page;
   }
 
-  private async fetchData() {
+  private async fetchData(): Promise<void> {
     this.loading = true;
     const { statusCode, data, message } = await this.$bapi.FetchGetArticleList({
       pageSize: this.page.pageSize,
