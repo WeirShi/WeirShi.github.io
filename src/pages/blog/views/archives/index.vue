@@ -5,29 +5,39 @@
     :spinning="loading"
     tip="数据加载中..."
   >
-    <div class="archives-wrap" v-if="articles">
-      <div class="time-line"></div>
-      <div class="list-content">
-        <p class="normal-node">目前共计 {{ page.total }} 篇文章~</p>
-        <div
-          class="bold-node"
-          v-for="(year, key, index) in articles"
-          :key="index"
-        >
-          <p>{{ key }}年</p>
+    <div class="content" v-if="articles">
+      <div class="archives-wrap">
+        <div class="time-line"></div>
+        <div class="list-content">
+          <p class="normal-node">目前共计 {{ page.total }} 篇文章~</p>
           <div
-            class="bold-node month"
-            v-for="(month, key, index) in year"
+            class="bold-node"
+            v-for="(year, key, index) in articles"
             :key="index"
           >
-            <p>{{ key }}月</p>
-            <ArticleCard
-              v-for="(article, index) in month"
+            <p>{{ key }}年</p>
+            <div
+              class="bold-node month"
+              v-for="(month, key, index) in year"
               :key="index"
-              :article="article"
-            />
+            >
+              <p>{{ key }}月</p>
+              <ArticleCard
+                v-for="(article, index) in month"
+                :key="index"
+                :article="article"
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div class="pagination">
+        <a-pagination
+          size="small"
+          :current="page.current"
+          :total="page.total"
+          @change="pageChange"
+        />
       </div>
     </div>
     <NoData v-else text="作者太懒了，还没有写一篇文章~" />
@@ -54,6 +64,13 @@ export default class Archives extends Mixins(Scroll) {
     total: 0
   };
   private articles: Dictionary<Dictionary<Article[]>> | null = null;
+
+  private pageChange(page: number, pageSize: number): void {
+    console.log(page, pageSize);
+    this.scrollToTop(0, false);
+    this.page.pageSize = page;
+    this.fetchData();
+  }
 
   private async fetchData(): Promise<void> {
     this.loading = true;
