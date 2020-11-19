@@ -94,22 +94,22 @@ export default class Header extends Vue {
     {
       name: "首页",
       icon: "home",
-      to: "/blog/home"
+      to: "/home"
     },
     {
       name: "分类/标签",
       icon: "tags",
-      to: "/blog/categories"
+      to: "/categories"
     },
     {
       name: "归档",
       icon: "profile",
-      to: "/blog/archives"
+      to: "/archives"
     },
     {
       name: "关于",
       icon: "user",
-      to: "/blog/about"
+      to: "/about"
     }
     // {
     //   name: "友链",
@@ -124,7 +124,7 @@ export default class Header extends Vue {
     // {
     //   name: "搜索",
     //   icon: "search",
-    //   to: "/blog/search"
+    //   to: "/search"
     // }
   ];
 
@@ -174,7 +174,7 @@ export default class Header extends Vue {
   private showMobileTabs = false;
 
   private toHomeFromLogo(): void {
-    this.$router.push({ path: "/blog/home" });
+    this.$router.push({ path: "/home" });
   }
   private toggle() {
     this.showMobileTabs = !this.showMobileTabs;

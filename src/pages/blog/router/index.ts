@@ -93,7 +93,7 @@ router.beforeEach((to, from, next) => {
   if (!to.name) {
     // 没有该路由
     next({
-      path: "/blog/404"
+      path: "/404"
     });
     return;
   }
