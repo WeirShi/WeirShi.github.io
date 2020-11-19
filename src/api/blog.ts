@@ -102,11 +102,11 @@ export const FetchAddLikeTimes = (params: any, config?: AxiosRequestConfig) =>
  * @author WeirShi
  * @date 2010-11-17
  */
-export const FetchArticleListByCategory = (
+export const FetchArticleListByCategoryOrTag = (
   params: any,
   config?: AxiosRequestConfig
 ) =>
   cryptoInstance.get<ApiResponse<Article>>(
-    `${URL_DIC.blogArticleListByCategory}/${params.type}/articles`,
+    `${URL_DIC.blogArticleListByCategoryOrTag}`,
     { params, ...config }
   );

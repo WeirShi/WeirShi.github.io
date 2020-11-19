@@ -48,24 +48,13 @@ export default class CategoryList extends Vue {
       statusCode,
       data,
       message
-    } = await this.$bapi.FetchArticleListByCategory({
+    } = await this.$bapi.FetchArticleListByCategoryOrTag({
       type: this.type,
       id: this.id
     });
     this.loading = false;
     if (statusCode === 0) {
-      const { articles } = data;
-      this.articleList = articles;
-      //   if (this.type === "category") {
-      //     this.category = {
-      //       ...others
-      //     };
-      //   } else {
-      //     this.tag = {
-      //       ...others
-      //     };
-      //   }
-      //   console.log("articleList", this.articleList);
+      this.articleList = data;
     } else {
       this.$message.error(message);
     }
