@@ -9,26 +9,26 @@ NProgress.configure({ easing: "ease", speed: 500, showSpinner: false });
 Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
-    path: "/blog/404",
+    path: "/404",
     name: "NotFound",
     component: () =>
       import(/* webpackChunkName: "notFound" */ "blog/views/notFound/index.vue")
   },
   {
-    path: "/blog",
+    path: "/",
     name: "Blog",
-    redirect: "/blog/home",
+    redirect: "/home",
     component: () =>
       import(/* webpackChunkName: "notFound" */ "blog/views/main/index.vue"),
     children: [
       {
-        path: "/blog/home",
+        path: "/home",
         name: "Home",
         component: () =>
           import(/* webpackChunkName: "home" */ "blog/views/home/index.vue")
       },
       {
-        path: "/blog/categories",
+        path: "/categories",
         name: "Category",
         component: () =>
           import(
@@ -36,7 +36,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/blog/archives",
+        path: "/archives",
         name: "Archives",
         component: () =>
           import(
@@ -44,19 +44,19 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/blog/about",
+        path: "/about",
         name: "About",
         component: () =>
           import(/* webpackChunkName: "about" */ "blog/views/about/index.vue")
       },
       {
-        path: "/blog/search",
+        path: "/search",
         name: "Search",
         component: () =>
           import(/* webpackChunkName: "search" */ "blog/views/search/index.vue")
       },
       {
-        path: "/blog/article/deital/:id",
+        path: "/article/deital/:id",
         name: "ArticleDetail",
         component: () =>
           import(
@@ -64,7 +64,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/blog/article/:type/:id",
+        path: "/article/:type/:id",
         name: "ArticleListByCategory",
         component: () =>
           import(
@@ -77,7 +77,7 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/blog",
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

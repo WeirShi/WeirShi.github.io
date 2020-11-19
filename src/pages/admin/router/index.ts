@@ -10,23 +10,23 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/admin",
-    redirect: "/admin/login"
+    path: "/",
+    redirect: "/login"
   },
   {
-    path: "/admin/login",
+    path: "/login",
     name: "login",
     component: () =>
       import(/* webpackChunkName: "login" */ "admin/views/login/index.vue")
   },
   {
-    path: "/admin/regist",
+    path: "/regist",
     name: "regist",
     component: () =>
       import(/* webpackChunkName: "regist" */ "admin/views/regist/index.vue")
   },
   {
-    path: "/admin/404",
+    path: "/404",
     name: "error",
     component: () =>
       import(
@@ -34,14 +34,14 @@ const routes: Array<RouteConfig> = [
       )
   },
   {
-    path: "/admin/main",
+    path: "/main",
     name: "main",
-    redirect: "/admin/main/home",
+    redirect: "/main/home",
     component: () =>
       import(/* webpackChunkName: "main" */ "admin/views/main/index.vue"),
     children: [
       {
-        path: "/admin/main/home",
+        path: "/main/home",
         name: "home",
         meta: {
           title: "首页"
@@ -52,7 +52,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/tags",
+        path: "/main/tags",
         name: "tags",
         meta: {
           title: "标签"
@@ -63,7 +63,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/categories",
+        path: "/main/categories",
         name: "categories",
         meta: {
           title: "分类"
@@ -74,7 +74,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/articlewrite",
+        path: "/main/articlewrite",
         name: "articleWrite",
         meta: {
           title: "编写文章",
@@ -86,7 +86,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/articlelist",
+        path: "/main/articlelist",
         name: "articleList",
         meta: {
           title: "文章列表",
@@ -98,7 +98,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/articledrafts",
+        path: "/main/articledrafts",
         name: "articleDrafts",
         meta: {
           title: "文章草稿箱",
@@ -110,7 +110,7 @@ const routes: Array<RouteConfig> = [
           )
       },
       {
-        path: "/admin/main/articlerecycle",
+        path: "/main/articlerecycle",
         name: "articleRecycle",
         meta: {
           title: "文章回收站",
@@ -127,7 +127,7 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: "/admin",
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
