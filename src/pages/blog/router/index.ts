@@ -90,7 +90,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  console.log("to", to);
   if (!to.name) {
     // 没有该路由
     next({

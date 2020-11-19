@@ -9,6 +9,7 @@
             v-for="(category, index) in categories"
             :key="index"
             class="category-item"
+            @click="toPage(category.id, 'category')"
           >
             {{ category.name }}
             <span>{{ category.article_count }}篇</span>
@@ -22,7 +23,7 @@
             v-for="(tag, index) in tags"
             :key="index"
             class="tag-item"
-            :style="{}"
+            @click="toPage(tag.id, 'tag')"
           >
             <a-tag :color="tag.color">{{ tag.name }}</a-tag>
           </div>
@@ -65,8 +66,6 @@ export default class Categories extends Vue {
           this.$message.error("请求失败");
         } else {
           const [categoryRes, tagRes] = reses;
-          console.log("categoryRes", categoryRes);
-          console.log("tagRes", tagRes);
           this.categories = categoryRes.data;
           this.tags = tagRes.data;
         }
@@ -77,10 +76,17 @@ export default class Categories extends Vue {
       });
   }
 
+  private toPage(id: number, type: string): void {
+    this.$router.push({
+      name: "ArticleListByCategory",
+      params: {
+        id: String(id),
+        type
+      }
+    });
+  }
+
   mounted() {
-    // setTimeout(() => {
-    //   this.loading = false;
-    // }, 2000);
     this.fetchData();
   }
 }

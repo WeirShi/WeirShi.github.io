@@ -249,7 +249,6 @@ export default class ArticleTable extends Vue {
 
   // 发布，下架文章
   private async publishArticle(item: Article): Promise<void> {
-    console.log(item);
     const { statusCode, message } = await this.$api.FetchPublishArticle({
       id: item.id,
       is_publish: item.is_publish ? 0 : 1
@@ -284,7 +283,6 @@ export default class ArticleTable extends Vue {
   }
 
   private editArticle(id: number) {
-    console.log("editArticle", id);
     this.$router.push({
       name: "articleWrite",
       query: {

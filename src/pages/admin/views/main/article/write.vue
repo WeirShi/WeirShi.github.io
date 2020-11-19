@@ -150,8 +150,8 @@ export default class ArticleWrite extends Vue {
   private handleSelectCategory(categories: string[]): Category[] {
     const selectedCategories: Category[] = [];
     categories.forEach(category => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [{ articles, ...others }] = this.categoryList.filter(c => {
-        console.log("articles", articles);
         return c.name === category;
       });
       selectedCategories.push({ ...others });
@@ -193,7 +193,6 @@ export default class ArticleWrite extends Vue {
             this.articleForm.content
           )
         );
-        console.log("html", html);
         const params = {
           id: 0,
           title: this.articleForm.title,
@@ -208,7 +207,6 @@ export default class ArticleWrite extends Vue {
         if (this.editId) {
           params.id = this.editId;
         }
-        console.log("params", params);
         this.loading = true;
         const { statusCode, message } =
           this.editId === 0
@@ -237,12 +235,10 @@ export default class ArticleWrite extends Vue {
       message
     } = await this.$api.FetchGetArticleDetail({ id: this.editId });
     if (statusCode === 0) {
-      console.log(data);
       const { categories, tags, content, title, cover, description } = data;
       this.articleForm.categories = categories.map((category: Category) => {
         return category.name;
       });
-      console.log(this.articleForm.categories);
       this.articleForm.tags = tags.map((tag: Tag) => {
         return tag.name;
       });

@@ -28,7 +28,6 @@ export default class ArticleList extends Vue {
   };
 
   private async fetchList(pagination: Pagination): Promise<void> {
-    console.log("fetchList", pagination);
     this.pagination.pageSize = pagination.pageSize;
     this.pagination.current = pagination.current;
     this.loading = true;

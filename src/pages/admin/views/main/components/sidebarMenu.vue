@@ -79,7 +79,6 @@ export default class SideBarMenu extends Vue {
   }
 
   private openSubMenu(openKeys: string[]): void {
-    console.log("openKeys", openKeys);
     this.openKeys = openKeys;
   }
 
@@ -88,7 +87,6 @@ export default class SideBarMenu extends Vue {
     if (route.meta.parent) {
       this.openKeys = ["", this.$route.meta.parent];
     }
-    console.log("this.openKeys", this.openKeys);
   }
 
   @Watch("$route")

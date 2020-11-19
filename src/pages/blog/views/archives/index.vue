@@ -65,8 +65,8 @@ export default class Archives extends Mixins(Scroll) {
   };
   private articles: Dictionary<Dictionary<Article[]>> | null = null;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private pageChange(page: number, pageSize: number): void {
-    console.log(page, pageSize);
     this.scrollToTop(0, false);
     this.page.pageSize = page;
     this.fetchData();
@@ -94,7 +94,6 @@ export default class Archives extends Mixins(Scroll) {
         }
         articles[year][month].push(article);
       });
-      console.log("articles", articles);
       this.articles = articles;
     } else {
       this.$message.error(message);

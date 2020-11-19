@@ -74,7 +74,6 @@ export default class App extends Mixins(Scroll) {
   }
 
   mounted() {
-    console.log(this.$store);
     this.updateScreen();
     window.addEventListener("scroll", debounce(this.scrollListener));
     window.addEventListener("resize", debounce(this.updateScreen));

@@ -76,7 +76,6 @@ export default class Main extends Vue {
   private collapsed = false;
 
   get userMobile() {
-    console.log(this.$cache.get("userInfo"));
     const mobile = this.$cache.get("userInfo").mobile;
     return handleMobile(mobile);
   }
@@ -88,7 +87,6 @@ export default class Main extends Vue {
   }
 
   private changePassWord(): void {
-    console.log("changePassWord");
     this.$router.push({ name: "changePassword" });
   }
 }
