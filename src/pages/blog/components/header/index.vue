@@ -107,7 +107,7 @@ export default class Header extends Vue {
       to: "/archives"
     },
     {
-      name: "关于",
+      name: "关于我",
       icon: "user",
       to: "/about"
     }
