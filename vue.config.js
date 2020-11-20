@@ -11,6 +11,7 @@ module.exports = {
       .set("admin", resolve("src/pages/admin"))
       .set("public", resolve("src/public"));
   },
+  productionSourceMap: false,
   pages: {
     blog: {
       entry: "src/pages/blog/main.ts",
