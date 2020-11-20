@@ -5,7 +5,7 @@
     :spinning="loading"
     tip="数据加载中..."
   >
-    <div class="content" v-if="articles">
+    <div class="content" v-if="page.total > 0">
       <div class="archives-wrap">
         <div class="time-line"></div>
         <div class="list-content">

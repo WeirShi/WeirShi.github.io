@@ -1,7 +1,10 @@
 <template>
   <div id="categories" class="g-layout">
     <a-spin v-if="loading" tip="加载中..." />
-    <div class="content" v-if="!loading">
+    <div
+      class="content"
+      v-if="!loading && (categories.length !== 0 || tags.length !== 0)"
+    >
       <div class="categories-wrap" v-if="categories.length !== 0">
         <p class="title">分类</p>
         <div class="category">
