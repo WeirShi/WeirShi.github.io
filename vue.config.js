@@ -1,3 +1,6 @@
+const CompressionPlugin = require("compression-webpack-plugin")
+
+
 const path = require("path");
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -10,6 +13,16 @@ module.exports = {
       .set("blog", resolve("src/pages/blog"))
       .set("admin", resolve("src/pages/admin"))
       .set("public", resolve("src/public"));
+
+      // 生产环境，开启js\css压缩
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('compressionPlugin').use(new CompressionPlugin({
+        test: /\.(js|css|less)$/, // 匹配文件名
+        threshold: 10240, // 对超过10k的数据压缩
+        minRatio: 0.8,
+        deleteOriginalAssets: true // 删除源文件
+      }))
+    }
   },
   productionSourceMap: false,
   pages: {
