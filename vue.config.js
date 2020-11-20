@@ -17,7 +17,7 @@ module.exports = {
       // 生产环境，开启js\css压缩
     if (process.env.NODE_ENV === 'production') {
       config.plugin('compressionPlugin').use(new CompressionPlugin({
-        filename: '[path].gz[query]',
+        // filename: '[path].gz[query]',
         test: /\.(js|css|less)$/, // 匹配文件名
         threshold: 10240, // 对超过10k的数据压缩
         minRatio: 0.8,
