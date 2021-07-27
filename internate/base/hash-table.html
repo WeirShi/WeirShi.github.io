@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>哈希表 | 前端封神之路</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <meta name="description" content="记录学习的前端知识">
+    
+    <link rel="preload" href="/assets/css/0.styles.7cfabf05.css" as="style"><link rel="preload" href="/assets/js/app.e02f4364.js" as="script"><link rel="preload" href="/assets/js/2.e5ab2b68.js" as="script"><link rel="preload" href="/assets/js/47.06f2808d.js" as="script"><link rel="prefetch" href="/assets/js/10.a4afbb29.js"><link rel="prefetch" href="/assets/js/11.8fa0239d.js"><link rel="prefetch" href="/assets/js/12.89ff0f97.js"><link rel="prefetch" href="/assets/js/13.2e99648c.js"><link rel="prefetch" href="/assets/js/14.02f32e39.js"><link rel="prefetch" href="/assets/js/15.ba3ff87f.js"><link rel="prefetch" href="/assets/js/16.bd3bd41d.js"><link rel="prefetch" href="/assets/js/17.9aee73b6.js"><link rel="prefetch" href="/assets/js/18.3a48cfe1.js"><link rel="prefetch" href="/assets/js/19.d7a4f467.js"><link rel="prefetch" href="/assets/js/20.eba752eb.js"><link rel="prefetch" href="/assets/js/21.234cb103.js"><link rel="prefetch" href="/assets/js/22.25b98178.js"><link rel="prefetch" href="/assets/js/23.5f33b2af.js"><link rel="prefetch" href="/assets/js/24.d030827e.js"><link rel="prefetch" href="/assets/js/25.bbf6f4af.js"><link rel="prefetch" href="/assets/js/26.2da011ee.js"><link rel="prefetch" href="/assets/js/27.924eb7f8.js"><link rel="prefetch" href="/assets/js/28.215c6def.js"><link rel="prefetch" href="/assets/js/29.49ff7a0c.js"><link rel="prefetch" href="/assets/js/3.3ff42840.js"><link rel="prefetch" href="/assets/js/30.78d8c524.js"><link rel="prefetch" href="/assets/js/31.d10eecb1.js"><link rel="prefetch" href="/assets/js/32.703f9a81.js"><link rel="prefetch" href="/assets/js/33.1f6afe47.js"><link rel="prefetch" href="/assets/js/34.847c78b1.js"><link rel="prefetch" href="/assets/js/35.9fb03eac.js"><link rel="prefetch" href="/assets/js/36.7b6d0fe2.js"><link rel="prefetch" href="/assets/js/37.b943ff87.js"><link rel="prefetch" href="/assets/js/38.87d35ff7.js"><link rel="prefetch" href="/assets/js/39.0727f0ca.js"><link rel="prefetch" href="/assets/js/4.3af4e00b.js"><link rel="prefetch" href="/assets/js/40.ceb5e06a.js"><link rel="prefetch" href="/assets/js/41.bf2bba03.js"><link rel="prefetch" href="/assets/js/42.15203d7b.js"><link rel="prefetch" href="/assets/js/43.6a4d7a03.js"><link rel="prefetch" href="/assets/js/44.ce4c9c1a.js"><link rel="prefetch" href="/assets/js/45.f0cb53d4.js"><link rel="prefetch" href="/assets/js/46.e4dff9bb.js"><link rel="prefetch" href="/assets/js/48.762d3028.js"><link rel="prefetch" href="/assets/js/49.02aadb1c.js"><link rel="prefetch" href="/assets/js/5.d91f4f80.js"><link rel="prefetch" href="/assets/js/50.66a1109e.js"><link rel="prefetch" href="/assets/js/51.f58f83eb.js"><link rel="prefetch" href="/assets/js/52.4954ea62.js"><link rel="prefetch" href="/assets/js/53.e80743e6.js"><link rel="prefetch" href="/assets/js/54.7bbd7812.js"><link rel="prefetch" href="/assets/js/55.dca3aa4a.js"><link rel="prefetch" href="/assets/js/56.0ac5807c.js"><link rel="prefetch" href="/assets/js/57.1e7c46c8.js"><link rel="prefetch" href="/assets/js/58.3e10496c.js"><link rel="prefetch" href="/assets/js/59.7d7cb96d.js"><link rel="prefetch" href="/assets/js/6.de950ca7.js"><link rel="prefetch" href="/assets/js/60.948e06dd.js"><link rel="prefetch" href="/assets/js/61.5a2c7e72.js"><link rel="prefetch" href="/assets/js/62.0cb07987.js"><link rel="prefetch" href="/assets/js/63.68aec39f.js"><link rel="prefetch" href="/assets/js/64.5078acf1.js"><link rel="prefetch" href="/assets/js/65.adca14c5.js"><link rel="prefetch" href="/assets/js/66.c97a3f9f.js"><link rel="prefetch" href="/assets/js/67.198c82e5.js"><link rel="prefetch" href="/assets/js/68.8d8f7141.js"><link rel="prefetch" href="/assets/js/69.808355c9.js"><link rel="prefetch" href="/assets/js/7.484f9988.js"><link rel="prefetch" href="/assets/js/70.f3a63a51.js"><link rel="prefetch" href="/assets/js/8.89b2441f.js"><link rel="prefetch" href="/assets/js/9.4c8a0210.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7cfabf05.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">前端封神之路</span></a> <div class="links"><!----> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础" class="mobile-dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/internate/base/hash-table.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  随记
+</a></li><li class="dropdown-item"><!----> <a href="/internate/network/http.html" class="nav-link">
+  网络
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="日常开发记录" class="dropdown-title"><span class="title">日常开发记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="日常开发记录" class="mobile-dropdown-title"><span class="title">日常开发记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/daily/css/daily.html" class="nav-link">
+  CSS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/js/utils.html" class="nav-link">
+  JS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/node/pm2.html" class="nav-link">
+  node相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/html/html5.html" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/css/bfc.html" class="nav-link">
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/base/operator.html" class="nav-link">
+  JS基础
+</a></li><li class="dropdown-item"><!----> <a href="/realize/realize-indexof.html" class="nav-link">
+  手写题
+</a></li><li class="dropdown-item"><!----> <a href="/interview/this.html" class="nav-link">
+  面试题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架工具" class="mobile-dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/framework/Vue/2.x/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/framework/React/preposition.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/framework/Webpack/webpack.html" class="nav-link">
+  Webpack
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/WeirShi/vuepress-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  苏ICP备19022770号-1
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础" class="mobile-dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/internate/base/hash-table.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  随记
+</a></li><li class="dropdown-item"><!----> <a href="/internate/network/http.html" class="nav-link">
+  网络
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="日常开发记录" class="dropdown-title"><span class="title">日常开发记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="日常开发记录" class="mobile-dropdown-title"><span class="title">日常开发记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/daily/css/daily.html" class="nav-link">
+  CSS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/js/utils.html" class="nav-link">
+  JS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/node/pm2.html" class="nav-link">
+  node相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/html/html5.html" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/css/bfc.html" class="nav-link">
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/base/operator.html" class="nav-link">
+  JS基础
+</a></li><li class="dropdown-item"><!----> <a href="/realize/realize-indexof.html" class="nav-link">
+  手写题
+</a></li><li class="dropdown-item"><!----> <a href="/interview/this.html" class="nav-link">
+  面试题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架工具" class="mobile-dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/framework/Vue/2.x/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/framework/React/preposition.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/framework/Webpack/webpack.html" class="nav-link">
+  Webpack
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/WeirShi/vuepress-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  苏ICP备19022770号-1
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>随记</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/internate/base/hash-table.html" aria-current="page" class="active sidebar-link">哈希表</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/internate/base/hash-table.html#什么是哈希表" class="sidebar-link">什么是哈希表</a></li><li class="sidebar-sub-header"><a href="/internate/base/hash-table.html#js模拟实现-hashtable" class="sidebar-link">JS模拟实现 HashTable</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="哈希表"><a href="#哈希表" class="header-anchor">#</a> 哈希表</h1> <h2 id="什么是哈希表"><a href="#什么是哈希表" class="header-anchor">#</a> 什么是哈希表</h2> <p>哈希表（Hash table，也叫散列表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表(哈希表)。</p> <ol><li><p><strong>可以根据一个key值来直接访问数据，因此查找速度快</strong></p></li> <li><p><strong>哈希表是一个数据结构</strong></p></li> <li><p><strong>哈希表本质上是一个数组</strong> 底层是用数组实现的</p></li> <li><p>实现哈希表我们可以采用两种方法：数组 + 链表 ； 数组 + 二叉树</p></li></ol> <ul><li>第一种数组+链表的形式，本质上是出现哈希冲突的一种解决办法，使用链表存放，所以综合起来叫做数组+链表的方式来实现一个哈希表，另外数组中一般就是存放的单一的数据，而哈希表中存放的是一个键值对</li></ul> <h2 id="js模拟实现-hashtable"><a href="#js模拟实现-hashtable" class="header-anchor">#</a> JS模拟实现 HashTable</h2> <p>通过构造函数，ES6中的Map实例来实现HashTable</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">HashTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 创建对象用于接受键值对</span>
+  <span class="token keyword">var</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// 添加关键字，无返回值</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//判断哈希表中是否存在key，若不存在，赋值 </span>
+    <span class="token comment">// if (!this.hasKey(key)) {</span>
+    <span class="token comment">//   map.set(key, value)</span>
+    <span class="token comment">// }</span>
+    <span class="token comment">// 存在 则需要处理hash冲突， 这里直接覆盖</span>
+    map<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 删除关键字, 如果哈希表中包含key，并且delete返回true则删除</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">remove</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 哈希表中是否包含key，返回一个布尔值</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">hasKey</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 哈希表中是否包含value，返回一个布尔值</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">hasValue</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">===</span> value
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 根据键获取value,如果不存在就返回null</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getValue</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">?</span> map<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 获取哈希表中的所有value, 返回一个数组</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getAllValues</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> values <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">[</span>_<span class="token punctuation">,</span> value<span class="token punctuation">]</span> <span class="token keyword">of</span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      values<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> values
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 根据值获取哈希表中的key，如果不存在就返回null</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getKey</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">[</span>k<span class="token punctuation">,</span> v<span class="token punctuation">]</span> <span class="token keyword">of</span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>v <span class="token operator">===</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> k
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 遍历结束没有return，就返回null</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 获取哈希表中所有的key,返回一个数组</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getAllKeys</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> keys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">[</span>k<span class="token punctuation">,</span> _<span class="token punctuation">]</span> <span class="token keyword">of</span> map<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      keys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> keys
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 获取哈希表中记录的条数，返回一个数值</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getSize</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> map<span class="token punctuation">.</span>size
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 清空哈希表，无返回值</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">clear</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    map<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/23/2021, 10:33:48 AM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e02f4364.js" defer></script><script src="/assets/js/2.e5ab2b68.js" defer></script><script src="/assets/js/47.06f2808d.js" defer></script>
+  </body>
+</html>

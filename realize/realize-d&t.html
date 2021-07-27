@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>防抖 | 前端封神之路</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <meta name="description" content="记录学习的前端知识">
+    
+    <link rel="preload" href="/assets/css/0.styles.7cfabf05.css" as="style"><link rel="preload" href="/assets/js/app.e02f4364.js" as="script"><link rel="preload" href="/assets/js/2.e5ab2b68.js" as="script"><link rel="preload" href="/assets/js/64.5078acf1.js" as="script"><link rel="prefetch" href="/assets/js/10.a4afbb29.js"><link rel="prefetch" href="/assets/js/11.8fa0239d.js"><link rel="prefetch" href="/assets/js/12.89ff0f97.js"><link rel="prefetch" href="/assets/js/13.2e99648c.js"><link rel="prefetch" href="/assets/js/14.02f32e39.js"><link rel="prefetch" href="/assets/js/15.ba3ff87f.js"><link rel="prefetch" href="/assets/js/16.bd3bd41d.js"><link rel="prefetch" href="/assets/js/17.9aee73b6.js"><link rel="prefetch" href="/assets/js/18.3a48cfe1.js"><link rel="prefetch" href="/assets/js/19.d7a4f467.js"><link rel="prefetch" href="/assets/js/20.eba752eb.js"><link rel="prefetch" href="/assets/js/21.234cb103.js"><link rel="prefetch" href="/assets/js/22.25b98178.js"><link rel="prefetch" href="/assets/js/23.5f33b2af.js"><link rel="prefetch" href="/assets/js/24.d030827e.js"><link rel="prefetch" href="/assets/js/25.bbf6f4af.js"><link rel="prefetch" href="/assets/js/26.2da011ee.js"><link rel="prefetch" href="/assets/js/27.924eb7f8.js"><link rel="prefetch" href="/assets/js/28.215c6def.js"><link rel="prefetch" href="/assets/js/29.49ff7a0c.js"><link rel="prefetch" href="/assets/js/3.3ff42840.js"><link rel="prefetch" href="/assets/js/30.78d8c524.js"><link rel="prefetch" href="/assets/js/31.d10eecb1.js"><link rel="prefetch" href="/assets/js/32.703f9a81.js"><link rel="prefetch" href="/assets/js/33.1f6afe47.js"><link rel="prefetch" href="/assets/js/34.847c78b1.js"><link rel="prefetch" href="/assets/js/35.9fb03eac.js"><link rel="prefetch" href="/assets/js/36.7b6d0fe2.js"><link rel="prefetch" href="/assets/js/37.b943ff87.js"><link rel="prefetch" href="/assets/js/38.87d35ff7.js"><link rel="prefetch" href="/assets/js/39.0727f0ca.js"><link rel="prefetch" href="/assets/js/4.3af4e00b.js"><link rel="prefetch" href="/assets/js/40.ceb5e06a.js"><link rel="prefetch" href="/assets/js/41.bf2bba03.js"><link rel="prefetch" href="/assets/js/42.15203d7b.js"><link rel="prefetch" href="/assets/js/43.6a4d7a03.js"><link rel="prefetch" href="/assets/js/44.ce4c9c1a.js"><link rel="prefetch" href="/assets/js/45.f0cb53d4.js"><link rel="prefetch" href="/assets/js/46.e4dff9bb.js"><link rel="prefetch" href="/assets/js/47.06f2808d.js"><link rel="prefetch" href="/assets/js/48.762d3028.js"><link rel="prefetch" href="/assets/js/49.02aadb1c.js"><link rel="prefetch" href="/assets/js/5.d91f4f80.js"><link rel="prefetch" href="/assets/js/50.66a1109e.js"><link rel="prefetch" href="/assets/js/51.f58f83eb.js"><link rel="prefetch" href="/assets/js/52.4954ea62.js"><link rel="prefetch" href="/assets/js/53.e80743e6.js"><link rel="prefetch" href="/assets/js/54.7bbd7812.js"><link rel="prefetch" href="/assets/js/55.dca3aa4a.js"><link rel="prefetch" href="/assets/js/56.0ac5807c.js"><link rel="prefetch" href="/assets/js/57.1e7c46c8.js"><link rel="prefetch" href="/assets/js/58.3e10496c.js"><link rel="prefetch" href="/assets/js/59.7d7cb96d.js"><link rel="prefetch" href="/assets/js/6.de950ca7.js"><link rel="prefetch" href="/assets/js/60.948e06dd.js"><link rel="prefetch" href="/assets/js/61.5a2c7e72.js"><link rel="prefetch" href="/assets/js/62.0cb07987.js"><link rel="prefetch" href="/assets/js/63.68aec39f.js"><link rel="prefetch" href="/assets/js/65.adca14c5.js"><link rel="prefetch" href="/assets/js/66.c97a3f9f.js"><link rel="prefetch" href="/assets/js/67.198c82e5.js"><link rel="prefetch" href="/assets/js/68.8d8f7141.js"><link rel="prefetch" href="/assets/js/69.808355c9.js"><link rel="prefetch" href="/assets/js/7.484f9988.js"><link rel="prefetch" href="/assets/js/70.f3a63a51.js"><link rel="prefetch" href="/assets/js/8.89b2441f.js"><link rel="prefetch" href="/assets/js/9.4c8a0210.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7cfabf05.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">前端封神之路</span></a> <div class="links"><!----> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础" class="mobile-dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/internate/base/hash-table.html" class="nav-link">
+  随记
+</a></li><li class="dropdown-item"><!----> <a href="/internate/network/http.html" class="nav-link">
+  网络
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="日常开发记录" class="dropdown-title"><span class="title">日常开发记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="日常开发记录" class="mobile-dropdown-title"><span class="title">日常开发记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/daily/css/daily.html" class="nav-link">
+  CSS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/js/utils.html" class="nav-link">
+  JS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/node/pm2.html" class="nav-link">
+  node相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/html/html5.html" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/css/bfc.html" class="nav-link">
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/base/operator.html" class="nav-link">
+  JS基础
+</a></li><li class="dropdown-item"><!----> <a href="/realize/realize-indexof.html" class="nav-link">
+  手写题
+</a></li><li class="dropdown-item"><!----> <a href="/interview/this.html" class="nav-link">
+  面试题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架工具" class="mobile-dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/framework/Vue/2.x/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/framework/React/preposition.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/framework/Webpack/webpack.html" class="nav-link">
+  Webpack
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/WeirShi/vuepress-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  苏ICP备19022770号-1
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="基础" class="dropdown-title"><span class="title">基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="基础" class="mobile-dropdown-title"><span class="title">基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/internate/base/hash-table.html" class="nav-link">
+  随记
+</a></li><li class="dropdown-item"><!----> <a href="/internate/network/http.html" class="nav-link">
+  网络
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="日常开发记录" class="dropdown-title"><span class="title">日常开发记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="日常开发记录" class="mobile-dropdown-title"><span class="title">日常开发记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/daily/css/daily.html" class="nav-link">
+  CSS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/js/utils.html" class="nav-link">
+  JS相关
+</a></li><li class="dropdown-item"><!----> <a href="/daily/node/pm2.html" class="nav-link">
+  node相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端" class="mobile-dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/html/html5.html" class="nav-link">
+  HTML
+</a></li><li class="dropdown-item"><!----> <a href="/css/bfc.html" class="nav-link">
+  CSS
+</a></li><li class="dropdown-item"><!----> <a href="/base/operator.html" class="nav-link">
+  JS基础
+</a></li><li class="dropdown-item"><!----> <a href="/realize/realize-indexof.html" class="nav-link">
+  手写题
+</a></li><li class="dropdown-item"><!----> <a href="/interview/this.html" class="nav-link">
+  面试题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="框架工具" class="dropdown-title"><span class="title">框架工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="框架工具" class="mobile-dropdown-title"><span class="title">框架工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/framework/Vue/2.x/vue.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/framework/React/preposition.html" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/framework/Webpack/webpack.html" class="nav-link">
+  Webpack
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/WeirShi/vuepress-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  苏ICP备19022770号-1
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>手写题</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/realize/realize-indexof.html" class="sidebar-link">实现indexOf方法</a></li><li><a href="/realize/realize-d&amp;t.html" aria-current="page" class="active sidebar-link">实现防抖和节流</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/realize/realize-clone.html" class="sidebar-link">实现深浅拷贝</a></li><li><a href="/realize/realize-new.html" class="sidebar-link">实现new方法</a></li><li><a href="/realize/realize-ES6Class.html" class="sidebar-link">实现ES6 Class方法</a></li><li><a href="/realize/realize-promiseAll.html" class="sidebar-link">实现Promise.all</a></li><li><a href="/realize/realize-eventBus.html" class="sidebar-link">实现Event Bus</a></li><li><a href="/realize/realize-instanceof.html" class="sidebar-link">实现instanceof</a></li><li><a href="/realize/realize-queue.html" class="sidebar-link">实现并发请求队列</a></li><li><a href="/realize/realize-call,apply,bind.html" class="sidebar-link">实现call,apply,bind方法</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="防抖"><a href="#防抖" class="header-anchor">#</a> 防抖</h3> <p>触发事件后不立即执行，在一定时间内如果再次触发，重新计时，计时结束后执行事件</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 间隔时间 默认300ms</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> interval <span class="token operator">=</span> <span class="token number">300</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timer <span class="token comment">// 保存定时器变量</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    timer <span class="token operator">&amp;&amp;</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token comment">// 上一个定时器存在则清除，并重新计时</span>
+    <span class="token keyword">const</span> context <span class="token operator">=</span> <span class="token keyword">this</span> <span class="token comment">// 保存上下文</span>
+    <span class="token comment">// 保存此处的arguments，因为setTimeout是全局的，arguments不是防抖函数需要的。</span>
+    <span class="token keyword">const</span> args <span class="token operator">=</span> arguments
+    <span class="token comment">// 开始计时</span>
+    timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> interval<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>带有立即执行的防抖函数</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> interval <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">,</span> immediate <span class="token operator">=</span> <span class="token boolean">true</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timer<span class="token punctuation">,</span> context<span class="token punctuation">,</span> args
+  
+  <span class="token comment">// 延迟执行函数</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">later</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 延迟函数执行完毕，清空缓存的定时器序号</span>
+    timer <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token comment">// 延迟执行的情况下，函数会在延迟函数中执行</span>
+    <span class="token comment">// 使用到之前缓存的参数和上下文</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>immediate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span>
+      context <span class="token operator">=</span> args <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span>
+
+  <span class="token comment">// 这里返回的函数是每次实际调用的函数</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>params</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 如果没有创建延迟执行函数（later），就创建一个</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      timer <span class="token operator">=</span> <span class="token function">later</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token comment">// 如果是立即执行，调用函数</span>
+      <span class="token comment">// 否则缓存参数和调用上下文</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>immediate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        context <span class="token operator">=</span> <span class="token keyword">this</span>
+        args <span class="token operator">=</span> params
+      <span class="token punctuation">}</span>
+    <span class="token comment">// 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个</span>
+    <span class="token comment">// 这样做延迟函数会重新计时</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
+      timer <span class="token operator">=</span> <span class="token function">later</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="节流"><a href="#节流" class="header-anchor">#</a> 节流</h3> <p>一个事件一直不断的触发时，只有当前时间与上一次执行的时间在一个设定时间才会再次执行该事件</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 间隔时间，默认300ms</span>
+<span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> interval <span class="token operator">=</span> <span class="token number">300</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 节流函数进入的时间</span>
+  <span class="token keyword">let</span> enterTime <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 保存上下文</span>
+    <span class="token keyword">const</span> context <span class="token operator">=</span> <span class="token keyword">this</span>
+    <span class="token keyword">let</span> startTime <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment">// 第一次函数return即触发的时间</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>startTime <span class="token operator">-</span> enterTime <span class="token operator">&gt;</span> interval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 再次触发事件函数</span>
+      <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> arguments<span class="token punctuation">)</span>
+      <span class="token comment">// 赋值给第一次触发的时间，这样就保存了第二次触发的时间</span>
+      enterTime <span class="token operator">=</span> backTime<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>看下大佬实现的节流函数</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/**
+ * 节流函数，返回函数连续调用时，func 执行频率限定为 次 / wait
+ *
+ * @param  {function}   func      回调函数
+ * @param  {number}     wait      表示时间窗口的间隔
+ * @param  {object}     options   如果想忽略开始函数的的调用，传入{leading: false}。
+ *                                如果想忽略结尾函数的调用，传入{trailing: false}
+ *                                两者不能共存，否则函数不能执行
+ * @return {function}             返回客户调用函数   
+ */</span>
+<span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span><span class="token parameter">func<span class="token punctuation">,</span> wait<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> context<span class="token punctuation">,</span> args<span class="token punctuation">,</span> result<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token comment">// 之前的时间戳</span>
+  <span class="token keyword">var</span> previous <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token comment">// 定时器回调函数</span>
+  <span class="token keyword">var</span> <span class="token function-variable function">later</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 如果设置了 leading，就将 previous 设为 0</span>
+    <span class="token comment">// 用于下面函数的第一个 if 判断</span>
+    previous <span class="token operator">=</span> options<span class="token punctuation">.</span>leading <span class="token operator">===</span> <span class="token boolean">false</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 置空一是为了防止内存泄漏，二是为了下面的定时器判断</span>
+    timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      context <span class="token operator">=</span> args <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 获得当前时间戳</span>
+    <span class="token keyword">var</span> now <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 首次进入前者肯定为 true</span>
+    <span class="token comment">// 如果需要第一次不执行函数</span>
+    <span class="token comment">// 就将上次时间戳设为当前的</span>
+    <span class="token comment">// 这样在接下来计算 remaining 的值时会大于0</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>previous <span class="token operator">&amp;&amp;</span> options<span class="token punctuation">.</span>leading <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      previous <span class="token operator">=</span> now<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 计算剩余时间</span>
+    <span class="token keyword">var</span> remaining <span class="token operator">=</span> wait <span class="token operator">-</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> previous<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+    <span class="token comment">// 如果当前调用已经大于上次调用时间 + wait</span>
+    <span class="token comment">// 或者用户手动调了时间</span>
+    <span class="token comment">// 如果设置了 trailing，只会进入这个条件</span>
+    <span class="token comment">// 如果没有设置 leading，那么第一次会进入这个条件</span>
+    <span class="token comment">// 还有一点，你可能会觉得开启了定时器那么应该不会进入这个 if 条件了</span>
+    <span class="token comment">// 其实还是会进入的，因为定时器的延时</span>
+    <span class="token comment">// 并不是准确的时间，很可能你设置了2秒</span>
+    <span class="token comment">// 但是他需要2.2秒才触发，这时候就会进入这个条件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>remaining <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token operator">||</span> remaining <span class="token operator">&gt;</span> wait<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 如果存在定时器就清理掉否则会调用二次回调</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      previous <span class="token operator">=</span> now<span class="token punctuation">;</span>
+      result <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        context <span class="token operator">=</span> args <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timeout <span class="token operator">&amp;&amp;</span> options<span class="token punctuation">.</span>trailing <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 判断是否设置了定时器和 trailing</span>
+      <span class="token comment">// 没有的话就开启一个定时器</span>
+      <span class="token comment">// 并且不能不能同时设置 leading 和 trailing</span>
+      timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>later<span class="token punctuation">,</span> remaining<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/9/2021, 4:12:25 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/realize/realize-indexof.html" class="prev">
+        实现indexOf方法
+      </a></span> <span class="next"><a href="/realize/realize-clone.html">
+        实现深浅拷贝
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e02f4364.js" defer></script><script src="/assets/js/2.e5ab2b68.js" defer></script><script src="/assets/js/64.5078acf1.js" defer></script>
+  </body>
+</html>
